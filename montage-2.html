@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montage & Installation | P&N Gebäudeservice Bürstadt</title>
+    <meta name="description" content="Professionelle Montageservice in Bürstadt. IKEA Möbel, Küchenmontage, Carports, Pavillons. ULTRA Kostenrechner für präzise Preise.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --purple: #7C3AED; --purple-dark: #5B21B6; --gold: #D4AF37; --dark: #1a1a1a; --gray: #333; --light: #F5F5F5; --success: #10b981; --info: #3b82f6; --warning: #f59e0b; }
+        body { font-family: 'Inter', sans-serif; color: var(--gray); line-height: 1.6; }
+        header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); box-shadow: 0 2px 30px rgba(0,0,0,0.1); z-index: 1000; }
+        nav { max-width: 1600px; margin: 0 auto; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 1rem; }
+        .logo-shield { width: 50px; height: 60px; background: linear-gradient(135deg, var(--gold) 0%, #F4D03F 100%); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.5rem; color: var(--dark); }
+        .logo-text { font-size: 1.5rem; font-weight: 900; color: var(--dark); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--gray); font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+        .cta-header { background: linear-gradient(135deg, var(--gold) 0%, #F4D03F 100%); color: var(--dark); padding: 0.9rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; }
+        .hero-service { margin-top: 90px; padding: 5rem 3rem; background: linear-gradient(135deg, #5B21B6 0%, var(--purple) 100%); color: #fff; text-align: center; }
+        .hero-icon { font-size: 5rem; margin-bottom: 1rem; }
+        .hero-service h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; }
+        .hero-service p { font-size: 1.2rem; opacity: 0.95; max-width: 700px; margin: 0 auto 1.5rem; }
+        .hero-badges { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .badge { background: rgba(255,255,255,0.15); padding: 0.6rem 1.2rem; border-radius: 50px; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.3); }
+        
+        /* WIZARD */
+        .wizard-wrapper { background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%); padding: 4rem 2rem; }
+        .wizard-container { max-width: 1100px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.12); overflow: hidden; }
+        .wizard-header { background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%); color: white; padding: 2rem; text-align: center; }
+        .wizard-header h2 { font-size: 2rem; font-weight: 900; margin-bottom: 0.3rem; }
+        .wizard-header p { font-size: 1rem; opacity: 0.9; }
+        .progress-container { padding: 1.5rem 2rem; background: var(--light); }
+        .progress-steps { display: flex; justify-content: space-between; position: relative; }
+        .progress-steps::before { content: ''; position: absolute; top: 16px; left: 0; right: 0; height: 3px; background: #ddd; }
+        .progress-line { position: absolute; top: 16px; left: 0; height: 3px; background: var(--purple); transition: width 0.3s; z-index: 1; }
+        .progress-step { position: relative; z-index: 2; text-align: center; flex: 1; }
+        .step-circle { width: 32px; height: 32px; border-radius: 50%; background: white; border: 3px solid #ddd; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.4rem; font-weight: 700; font-size: 0.85rem; transition: all 0.3s; }
+        .progress-step.active .step-circle { background: var(--purple); border-color: var(--purple); color: white; transform: scale(1.1); }
+        .progress-step.completed .step-circle { background: var(--success); border-color: var(--success); color: white; }
+        .step-label { font-size: 0.7rem; font-weight: 600; color: #666; }
+        .progress-step.active .step-label { color: var(--purple); }
+        .wizard-content { padding: 2rem; min-height: 400px; }
+        .wizard-step { display: none; animation: fadeIn 0.3s; }
+        .wizard-step.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .step-title { font-size: 1.6rem; font-weight: 800; color: var(--dark); margin-bottom: 0.4rem; }
+        .step-subtitle { font-size: 0.95rem; color: #666; margin-bottom: 1.5rem; }
+        .option-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .option-card { background: var(--light); border: 3px solid transparent; border-radius: 12px; padding: 1.2rem; cursor: pointer; transition: all 0.3s; position: relative; }
+        .option-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(124,58,237,0.15); }
+        .option-card.selected { border-color: var(--purple); background: rgba(124,58,237,0.05); }
+        .option-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .option-title { font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 0.2rem; }
+        .option-desc { font-size: 0.8rem; color: #666; margin-bottom: 0.5rem; }
+        .option-price { font-size: 1.1rem; font-weight: 800; color: var(--purple); }
+        .checkmark { position: absolute; top: 0.6rem; right: 0.6rem; width: 24px; height: 24px; border-radius: 50%; background: var(--success); color: white; display: none; align-items: center; justify-content: center; font-size: 0.9rem; }
+        .option-card.selected .checkmark { display: flex; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label { display: block; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .form-select, .form-input { width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 0.95rem; font-family: inherit; }
+        .form-select:focus, .form-input:focus { outline: none; border-color: var(--purple); }
+        .form-hint { font-size: 0.8rem; color: #666; margin-top: 0.3rem; }
+        .quantity-selector { display: flex; align-items: center; gap: 0.8rem; background: var(--light); padding: 0.8rem 1rem; border-radius: 10px; margin-bottom: 0.8rem; flex-wrap: wrap; }
+        .quantity-label { flex: 1; min-width: 180px; }
+        .quantity-label-title { font-weight: 600; color: var(--dark); font-size: 0.95rem; }
+        .quantity-label-desc { font-size: 0.8rem; color: #666; }
+        .quantity-controls { display: flex; align-items: center; gap: 0.6rem; }
+        .qty-btn { width: 32px; height: 32px; border: none; border-radius: 6px; background: var(--purple); color: white; font-size: 1.2rem; cursor: pointer; transition: all 0.2s; }
+        .qty-btn:hover { background: var(--purple-dark); }
+        .qty-input { width: 50px; text-align: center; padding: 0.3rem; border: 2px solid #ddd; border-radius: 6px; font-size: 1rem; font-weight: 700; }
+        .qty-price { font-weight: 700; color: var(--purple); font-size: 0.9rem; }
+        .checkbox-group { display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem 1rem; background: var(--light); border-radius: 10px; margin-bottom: 0.6rem; cursor: pointer; transition: all 0.2s; }
+        .checkbox-group:hover { background: rgba(124,58,237,0.05); }
+        .checkbox-group input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; flex-shrink: 0; }
+        .checkbox-content { flex: 1; }
+        .checkbox-title { font-weight: 600; color: var(--dark); font-size: 0.95rem; }
+        .checkbox-desc { font-size: 0.8rem; color: #666; }
+        .checkbox-price { font-weight: 700; color: var(--purple); font-size: 0.9rem; }
+        .info-box { background: rgba(59,130,246,0.1); border-left: 4px solid var(--info); padding: 0.8rem 1rem; border-radius: 8px; margin-bottom: 1.2rem; font-size: 0.9rem; }
+        .info-box-title { font-weight: 700; color: var(--info); margin-bottom: 0.2rem; }
+        .warning-box { background: rgba(245,158,11,0.1); border-left: 4px solid var(--warning); padding: 0.8rem 1rem; border-radius: 8px; margin-bottom: 1.2rem; font-size: 0.9rem; }
+        .warning-box-title { font-weight: 700; color: var(--warning); margin-bottom: 0.2rem; }
+        .range-container { margin-bottom: 1rem; }
+        .range-labels { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem; }
+        .range-value { color: var(--purple); font-weight: 800; }
+        input[type="range"] { width: 100%; height: 6px; border-radius: 3px; background: #ddd; -webkit-appearance: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--purple); cursor: pointer; }
+        .final-summary { background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%); color: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .final-summary h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+        .final-item { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.2); font-size: 0.95rem; }
+        .final-item:last-child { border-bottom: none; }
+        .final-total { font-size: 2rem; font-weight: 900; text-align: center; margin: 1rem 0; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; }
+        .contact-box { background: white; color: var(--dark); border-radius: 12px; padding: 1.5rem; text-align: center; border: 2px solid var(--light); }
+        .contact-box h4 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--purple); }
+        .contact-buttons { display: flex; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap; }
+        .btn-contact { flex: 1; min-width: 120px; padding: 0.8rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem; transition: all 0.2s; }
+        .btn-call { background: var(--success); color: white; }
+        .btn-whatsapp { background: #25D366; color: white; }
+        .btn-email { background: var(--gold); color: var(--dark); }
+        .btn-contact:hover { transform: translateY(-2px); }
+        .wizard-buttons { display: flex; justify-content: space-between; gap: 1rem; padding: 1.2rem 2rem; border-top: 2px solid var(--light); background: #fafafa; }
+        .btn { padding: 0.9rem 1.8rem; border: none; border-radius: 50px; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .btn-secondary { background: var(--light); color: var(--dark); }
+        .btn-secondary:hover { background: #ddd; }
+        .btn-primary { background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%); color: white; flex: 1; max-width: 280px; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(124,58,237,0.3); }
+        .btn-success { background: linear-gradient(135deg, var(--success) 0%, #059669 100%); color: white; flex: 1; max-width: 280px; }
+        .section { padding: 5rem 3rem; max-width: 1300px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-label { color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1rem; font-size: 0.85rem; margin-bottom: 0.8rem; }
+        .section-title { font-size: 2.2rem; font-weight: 900; color: var(--dark); }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .service-card { background: #fff; padding: 1.8rem; border-radius: 15px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border-top: 4px solid var(--purple); transition: transform 0.3s; }
+        .service-card:hover { transform: translateY(-8px); }
+        .service-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+        .service-card h3 { font-size: 1.3rem; font-weight: 700; color: var(--dark); margin-bottom: 0.8rem; }
+        .service-card ul { list-style: none; }
+        .service-card li { padding: 0.3rem 0 0.3rem 1.5rem; position: relative; font-size: 0.9rem; }
+        .service-card li::before { content: '✓'; position: absolute; left: 0; color: var(--purple); font-weight: 900; }
+        .preise { background: var(--light); padding: 5rem 3rem; }
+        .preis-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1100px; margin: 2.5rem auto 0; }
+        .preis-card { background: #fff; padding: 1.8rem; border-radius: 15px; text-align: center; transition: transform 0.3s; }
+        .preis-card:hover { transform: translateY(-5px); }
+        .preis-card h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
+        .preis-card .price { font-size: 1.8rem; font-weight: 900; color: var(--purple); margin: 0.8rem 0; }
+        .preis-card ul { list-style: none; text-align: left; margin-top: 0.8rem; }
+        .preis-card li { padding: 0.3rem 0 0.3rem 1.5rem; position: relative; font-size: 0.85rem; }
+        .preis-card li::before { content: '✓'; position: absolute; left: 0; color: var(--purple); font-weight: 900; }
+        .faq { padding: 5rem 3rem; background: #fff; }
+        .faq-list { max-width: 850px; margin: 2rem auto 0; }
+        .faq-item { background: var(--light); padding: 1.2rem; border-radius: 12px; margin-bottom: 0.8rem; border-left: 4px solid var(--purple); }
+        .faq-item h3 { color: var(--dark); font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .faq-item p { color: #555; font-size: 0.95rem; }
+        .cta-section { background: linear-gradient(135deg, var(--dark) 0%, #2d2d2d 100%); padding: 5rem 3rem; text-align: center; color: #fff; }
+        .cta-section h2 { font-size: 2.2rem; font-weight: 900; margin-bottom: 0.8rem; }
+        .cta-section p { font-size: 1.1rem; margin-bottom: 1.5rem; opacity: 0.9; }
+        .cta-btn { display: inline-block; background: linear-gradient(135deg, var(--gold) 0%, #F4D03F 100%); color: var(--dark); padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s; }
+        .cta-btn:hover { transform: translateY(-3px); }
+        footer { background: var(--dark); color: rgba(255,255,255,0.8); padding: 3rem 3rem 1.5rem; }
+        .footer-content { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 1.5rem; }
+        .footer-section h3 { color: var(--gold); margin-bottom: 1rem; font-size: 1rem; }
+        .footer-section p { margin-bottom: 0.4rem; font-size: 0.9rem; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.4rem; }
+        .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; }
+        .footer-section a:hover { color: var(--gold); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; text-align: center; color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+        @media (max-width: 1024px) { .services-grid, .preis-grid, .footer-content { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .nav-links { display: none; } .hero-service h1 { font-size: 2.2rem; } .services-grid, .preis-grid { grid-template-columns: 1fr; } .option-grid { grid-template-columns: 1fr; } .wizard-buttons { flex-direction: column; } .footer-content { grid-template-columns: 1fr; } .contact-buttons { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-shield">P&N</div>
+                <div><div class="logo-text">P&N GEBÄUDESERVICE</div></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leistungen.html">Leistungen</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <a href="angebot.html" class="cta-header">Angebot anfragen</a>
+        </nav>
+    </header>
+
+    <section class="hero-service">
+        <div class="hero-icon">🔧</div>
+        <h1>Montage & Installation</h1>
+        <p>Professionelle Montage von Möbeln, Küchen, Carports und mehr. Mit unserem ULTRA Kostenrechner wissen Sie sofort den Preis!</p>
+        <div class="hero-badges">
+            <div class="badge">✓ IKEA Möbel</div>
+            <div class="badge">✓ Küchenmontage</div>
+            <div class="badge">✓ Carports</div>
+            <div class="badge">✓ Präzise Preise</div>
+        </div>
+    </section>
+
+    <!-- ULTRA PREMIUM CALCULATOR -->
+    <div class="wizard-wrapper">
+        <div class="wizard-container">
+            <div class="wizard-header">
+                <h2>🧮 ULTRA Premium Kostenrechner</h2>
+                <p>Berechnen Sie Ihre Montagekosten in 5 Schritten</p>
+            </div>
+            <div class="progress-container">
+                <div class="progress-steps">
+                    <div class="progress-line" id="progressLine"></div>
+                    <div class="progress-step active"><div class="step-circle">1</div><div class="step-label">Kategorie</div></div>
+                    <div class="progress-step"><div class="step-circle">2</div><div class="step-label">Details</div></div>
+                    <div class="progress-step"><div class="step-circle">3</div><div class="step-label">Extras</div></div>
+                    <div class="progress-step"><div class="step-circle">4</div><div class="step-label">Ort</div></div>
+                    <div class="progress-step"><div class="step-circle">5</div><div class="step-label">Ergebnis</div></div>
+                </div>
+            </div>
+            <div class="wizard-content">
+                <!-- STEP 1 -->
+                <div class="wizard-step active" data-step="1">
+                    <h2 class="step-title">Was möchten Sie montieren?</h2>
+                    <p class="step-subtitle">Wählen Sie die Hauptkategorie</p>
+                    <div class="option-grid">
+                        <div class="option-card" data-category="ikea" onclick="selectCategory('ikea')"><div class="checkmark">✓</div><div class="option-icon">🛋️</div><div class="option-title">IKEA Möbel</div><div class="option-desc">Schränke, Betten, Regale</div><div class="option-price">ab 60€</div></div>
+                        <div class="option-card" data-category="kuche" onclick="selectCategory('kuche')"><div class="checkmark">✓</div><div class="option-icon">🍳</div><div class="option-title">Küchenmontage</div><div class="option-desc">Komplette Küchen</div><div class="option-price">ab 800€</div></div>
+                        <div class="option-card" data-category="carport" onclick="selectCategory('carport')"><div class="checkmark">✓</div><div class="option-icon">🏠</div><div class="option-title">Carport & Pavillon</div><div class="option-desc">Außenmontagen</div><div class="option-price">ab 500€</div></div>
+                        <div class="option-card" data-category="buro" onclick="selectCategory('buro')"><div class="checkmark">✓</div><div class="option-icon">💼</div><div class="option-title">Büromöbel</div><div class="option-desc">Schreibtische, Regale</div><div class="option-price">ab 80€</div></div>
+                        <div class="option-card" data-category="garten" onclick="selectCategory('garten')"><div class="checkmark">✓</div><div class="option-icon">🌳</div><div class="option-title">Gartenmöbel</div><div class="option-desc">Lounge, Grill, Markise</div><div class="option-price">ab 80€</div></div>
+                        <div class="option-card" data-category="andere" onclick="selectCategory('andere')"><div class="checkmark">✓</div><div class="option-icon">🔧</div><div class="option-title">Andere Möbel</div><div class="option-desc">Wohnwand, Bad, etc.</div><div class="option-price">ab 100€</div></div>
+                    </div>
+                </div>
+                <!-- STEP 2 -->
+                <div class="wizard-step" data-step="2" id="step2Content"><h2 class="step-title">Details</h2><p class="step-subtitle">Bitte wählen Sie zuerst eine Kategorie</p></div>
+                <!-- STEP 3 -->
+                <div class="wizard-step" data-step="3">
+                    <h2 class="step-title">Zusatzleistungen</h2>
+                    <p class="step-subtitle">Optionale Services</p>
+                    <div class="checkbox-group" onclick="toggleCB('demontage')"><input type="checkbox" id="demontage"><div class="checkbox-content"><div class="checkbox-title">Alte Möbel abbauen & entsorgen</div><div class="checkbox-desc">Abbau + Abtransport</div></div><span class="checkbox-price">+250€</span></div>
+                    <div class="checkbox-group" onclick="toggleCB('wandmontage')"><input type="checkbox" id="wandmontage"><div class="checkbox-content"><div class="checkbox-title">Wandmontage (TV, Regale)</div><div class="checkbox-desc">Sichere Befestigung</div></div><span class="checkbox-price">+100€</span></div>
+                    <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Kippsicherungen</div><div class="quantity-label-desc">Schränke an Wand</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('kippsicherung',-1)">-</button><input type="number" class="qty-input" id="kippsicherung" value="0" min="0"><button class="qty-btn" onclick="changeQty('kippsicherung',1)">+</button></div><span class="qty-price">25€/St</span></div>
+                    <div class="checkbox-group" onclick="toggleCB('verpackung')"><input type="checkbox" id="verpackung"><div class="checkbox-content"><div class="checkbox-title">Verpackung entsorgen</div><div class="checkbox-desc">Karton, Styropor</div></div><span class="checkbox-price">+60€</span></div>
+                    <div class="checkbox-group" onclick="toggleCB('reinigung')"><input type="checkbox" id="reinigung"><div class="checkbox-content"><div class="checkbox-title">Endreinigung</div><div class="checkbox-desc">Staub saugen, wischen</div></div><span class="checkbox-price">+80€</span></div>
+                    <div class="checkbox-group" onclick="toggleCB('beleuchtung')"><input type="checkbox" id="beleuchtung"><div class="checkbox-content"><div class="checkbox-title">LED Beleuchtung</div><div class="checkbox-desc">Innenbeleuchtung</div></div><span class="checkbox-price">+120€</span></div>
+                </div>
+                <!-- STEP 4 -->
+                <div class="wizard-step" data-step="4">
+                    <h2 class="step-title">Ort & Faktoren</h2>
+                    <p class="step-subtitle">Diese beeinflussen den Preis</p>
+                    <div class="form-group"><label class="form-label">🚗 Entfernung von Bürstadt</label><div class="range-container"><div class="range-labels"><span>0 km</span><span class="range-value"><span id="distanceValue">20</span> km</span><span>150 km</span></div><input type="range" id="distance" min="0" max="150" value="20" oninput="updateDistance()"></div><div class="info-box" id="anfahrtInfo">0-30km: Kostenlos ✓</div></div>
+                    <div class="form-group"><label class="form-label">🏢 Etage</label><select class="form-select" id="etage"><option value="eg">Erdgeschoss</option><option value="1">1. Etage mit Lift</option><option value="1-nl">1. Etage OHNE Lift (+50€)</option><option value="2">2. Etage mit Lift</option><option value="2-nl">2. Etage OHNE Lift (+80€)</option><option value="3+">3+ Etage mit Lift</option><option value="3+-nl">3+ Etage OHNE Lift (+150€)</option></select></div>
+                    <div class="form-group"><label class="form-label">📅 Termin</label><select class="form-select" id="termin"><option value="normal">Normal (Mo-Fr)</option><option value="express">Express 48h (+20%)</option><option value="weekend">Wochenende (+25%)</option></select></div>
+                    <div class="checkbox-group" onclick="toggleCB('schwierig')"><input type="checkbox" id="schwierig"><div class="checkbox-content"><div class="checkbox-title">Schwieriger Zugang</div><div class="checkbox-desc">Enge Treppe, schmale Türen</div></div><span class="checkbox-price">+80€</span></div>
+                </div>
+                <!-- STEP 5 -->
+                <div class="wizard-step" data-step="5">
+                    <h2 class="step-title">✨ Ihre Kalkulation</h2>
+                    <p class="step-subtitle">Komplette Übersicht</p>
+                    <div class="final-summary" id="finalSummary"></div>
+                    <div class="contact-box">
+                        <h4>🎉 Bereit für Montage?</h4>
+                        <p>Kontaktieren Sie uns!</p>
+                        <div class="contact-buttons">
+                            <a href="tel:+491747021338" class="btn-contact btn-call">📞 Anrufen</a>
+                            <a href="https://wa.me/491747021338" class="btn-contact btn-whatsapp">💬 WhatsApp</a>
+                            <a href="mailto:info@pn-garten-und-reinigung.com" class="btn-contact btn-email">✉️ E-Mail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wizard-buttons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousStep()" style="display:none;">← Zurück</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextStep()">Weiter →</button>
+                <button class="btn btn-success" id="finishBtn" onclick="resetCalc()" style="display:none;">🔄 Neue Berechnung</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="section">
+        <div class="section-header"><div class="section-label">UNSERE LEISTUNGEN</div><h2 class="section-title">Was wir montieren</h2></div>
+        <div class="services-grid">
+            <div class="service-card"><div class="service-icon">🛋️</div><h3>IKEA Möbel</h3><ul><li>PAX Schränke</li><li>Betten aller Größen</li><li>Regale & Kommoden</li><li>Schreibtische</li></ul></div>
+            <div class="service-card"><div class="service-icon">🍳</div><h3>Küchenmontage</h3><ul><li>Alle Hersteller</li><li>Geräte anschließen</li><li>Arbeitsplatte</li><li>Alte Küche entsorgen</li></ul></div>
+            <div class="service-card"><div class="service-icon">🏠</div><h3>Carport & Pavillon</h3><ul><li>Holz & Metall</li><li>Gartenhäuser</li><li>Pergolen</li><li>Fundamente</li></ul></div>
+        </div>
+    </section>
+
+    <!-- PREISE -->
+    <section class="preise">
+        <div class="section-header"><div class="section-label">RICHTPREISE</div><h2 class="section-title">Transparente Preise</h2></div>
+        <div class="preis-grid">
+            <div class="preis-card"><h3>IKEA Schrank</h3><div class="price">80-350€</div><ul><li>PAX alle Größen</li><li>Kommoden</li><li>Nach Komplexität</li></ul></div>
+            <div class="preis-card"><h3>Küche komplett</h3><div class="price">800-4.000€</div><ul><li>Alle Schränke</li><li>Geräte einbauen</li><li>Nach Laufmeter</li></ul></div>
+            <div class="preis-card"><h3>Carport</h3><div class="price">500-1.500€</div><ul><li>Einzel/Doppel</li><li>Komplett-Aufbau</li><li>Nach Größe</li></ul></div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="section-header"><h2 class="section-title">Häufige Fragen</h2></div>
+        <div class="faq-list">
+            <div class="faq-item"><h3>Wie genau ist der Rechner?</h3><p>Die Kalkulation ist ±15% genau. Endpreis nach Besichtigung oder Fotos.</p></div>
+            <div class="faq-item"><h3>Müssen die Möbel da sein?</h3><p>Ja, alle Pakete sollten angeliefert sein. Wir montieren, liefern nicht an.</p></div>
+            <div class="faq-item"><h3>Andere Marken außer IKEA?</h3><p>Ja! Wir montieren alle Hersteller.</p></div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Bereit für Montage?</h2>
+        <p>Nutzen Sie den Rechner oder kontaktieren Sie uns!</p>
+        <a href="angebot.html" class="cta-btn">Angebot anfragen →</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h3>P&N Garten und Reinigung</h3><p>Martinstraße 2a<br>68642 Bürstadt</p></div>
+            <div class="footer-section"><h3>Kontakt</h3><p>Tel: +49 174 7021338</p><p><a href="mailto:info@pn-garten-und-reinigung.com" style="color:var(--gold);">info@pn-garten-und-reinigung.com</a></p><p><a href="https://wa.me/491747021338" style="color:var(--gold);">WhatsApp</a></p></div>
+            <div class="footer-section"><h3>Business</h3><ul><li><a href="b2b-partner.html">B2B Partner</a></li><li><a href="premium-kunden.html">Premium Kunden</a></li></ul></div>
+            <div class="footer-section"><h3>Rechtliches</h3><ul><li><a href="impressum.html">Impressum</a></li><li><a href="datenschutz.html">Datenschutz</a></li><li><a href="agb.html">AGB</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 P&N Garten und Reinigung. Alle Rechte vorbehalten.</p></div>
+    </footer>
+
+    <script>
+        let currentStep=1, selectedCategory=null;
+        const categoryDetails={
+            ikea:`<h2 class="step-title">IKEA Möbel</h2><p class="step-subtitle">Wählen Sie Ihre Möbel</p>
+                <div class="warning-box"><div class="warning-box-title">⚠️ Wichtig</div>Pakete müssen angeliefert sein.</div>
+                <h3 style="margin:1rem 0 0.8rem;color:var(--purple);">Schränke</h3>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">PAX 2-Türen (≤120cm)</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('pax2',-1)">-</button><input type="number" class="qty-input" id="pax2" value="0" min="0"><button class="qty-btn" onclick="changeQty('pax2',1)">+</button></div><span class="qty-price">100€</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">PAX 3-Türen (150cm)</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('pax3',-1)">-</button><input type="number" class="qty-input" id="pax3" value="0" min="0"><button class="qty-btn" onclick="changeQty('pax3',1)">+</button></div><span class="qty-price">180€</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">PAX 4+ Türen (≥200cm)</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('pax4',-1)">-</button><input type="number" class="qty-input" id="pax4" value="0" min="0"><button class="qty-btn" onclick="changeQty('pax4',1)">+</button></div><span class="qty-price">320€</span></div>
+                <h3 style="margin:1rem 0 0.8rem;color:var(--purple);">Betten</h3>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Einzelbett (90-140cm)</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('bed1',-1)">-</button><input type="number" class="qty-input" id="bed1" value="0" min="0"><button class="qty-btn" onclick="changeQty('bed1',1)">+</button></div><span class="qty-price">80€</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Doppelbett (160-180cm)</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('bed2',-1)">-</button><input type="number" class="qty-input" id="bed2" value="0" min="0"><button class="qty-btn" onclick="changeQty('bed2',1)">+</button></div><span class="qty-price">120€</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Bett mit Stauraum</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('bed3',-1)">-</button><input type="number" class="qty-input" id="bed3" value="0" min="0"><button class="qty-btn" onclick="changeQty('bed3',1)">+</button></div><span class="qty-price">180€</span></div>
+                <h3 style="margin:1rem 0 0.8rem;color:var(--purple);">Regale & Kommoden</h3>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">BILLY / KALLAX</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('regal',-1)">-</button><input type="number" class="qty-input" id="regal" value="0" min="0"><button class="qty-btn" onclick="changeQty('regal',1)">+</button></div><span class="qty-price">70€</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Kommode</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('kommode',-1)">-</button><input type="number" class="qty-input" id="kommode" value="0" min="0"><button class="qty-btn" onclick="changeQty('kommode',1)">+</button></div><span class="qty-price">90€</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Schreibtisch</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('desk',-1)">-</button><input type="number" class="qty-input" id="desk" value="0" min="0"><button class="qty-btn" onclick="changeQty('desk',1)">+</button></div><span class="qty-price">60€</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">TV-Bank / BESTÅ</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('tvbank',-1)">-</button><input type="number" class="qty-input" id="tvbank" value="0" min="0"><button class="qty-btn" onclick="changeQty('tvbank',1)">+</button></div><span class="qty-price">80€</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Nachttisch</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('nacht',-1)">-</button><input type="number" class="qty-input" id="nacht" value="0" min="0"><button class="qty-btn" onclick="changeQty('nacht',1)">+</button></div><span class="qty-price">40€</span></div>`,
+            kuche:`<h2 class="step-title">Küchenmontage</h2><p class="step-subtitle">Ihre Küche Details</p>
+                <div class="form-group"><label class="form-label">Küchenform</label><select class="form-select" id="kuchenForm"><option value="">Wählen...</option><option value="einzeile">Einzeilig</option><option value="lform">L-Form</option><option value="uform">U-Form</option><option value="insel">Mit Insel</option></select></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Unterschränke</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('uSchrank',-1)">-</button><input type="number" class="qty-input" id="uSchrank" value="0" min="0"><button class="qty-btn" onclick="changeQty('uSchrank',1)">+</button></div><span class="qty-price">55€/St</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Oberschränke</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('oSchrank',-1)">-</button><input type="number" class="qty-input" id="oSchrank" value="0" min="0"><button class="qty-btn" onclick="changeQty('oSchrank',1)">+</button></div><span class="qty-price">65€/St</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Hochschränke</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('hSchrank',-1)">-</button><input type="number" class="qty-input" id="hSchrank" value="0" min="0"><button class="qty-btn" onclick="changeQty('hSchrank',1)">+</button></div><span class="qty-price">90€/St</span></div>
+                <div class="checkbox-group" onclick="toggleCB('arbeitsplatte')"><input type="checkbox" id="arbeitsplatte"><div class="checkbox-content"><div class="checkbox-title">Arbeitsplatte zuschneiden</div></div><span class="checkbox-price">+200€</span></div>
+                <div class="checkbox-group" onclick="toggleCB('spule')"><input type="checkbox" id="spule"><div class="checkbox-content"><div class="checkbox-title">Spüle montieren</div></div><span class="checkbox-price">+130€</span></div>
+                <div class="checkbox-group" onclick="toggleCB('herd')"><input type="checkbox" id="herd"><div class="checkbox-content"><div class="checkbox-title">Kochfeld einsetzen</div></div><span class="checkbox-price">+90€</span></div>
+                <div class="checkbox-group" onclick="toggleCB('geschirrsp')"><input type="checkbox" id="geschirrsp"><div class="checkbox-content"><div class="checkbox-title">Geschirrspüler</div></div><span class="checkbox-price">+100€</span></div>
+                <div class="checkbox-group" onclick="toggleCB('dunst')"><input type="checkbox" id="dunst"><div class="checkbox-content"><div class="checkbox-title">Dunstabzug</div></div><span class="checkbox-price">+140€</span></div>
+                <div class="checkbox-group" onclick="toggleCB('alteK')"><input type="checkbox" id="alteK"><div class="checkbox-content"><div class="checkbox-title">Alte Küche entsorgen</div></div><span class="checkbox-price">+400€</span></div>`,
+            carport:`<h2 class="step-title">Carport & Pavillon</h2><p class="step-subtitle">Außenmontage</p>
+                <div class="form-group"><label class="form-label">Typ</label><select class="form-select" id="carportTyp"><option value="0">Wählen...</option><option value="600">Einzelcarport - 600€</option><option value="1000">Doppelcarport - 1.000€</option><option value="500">Pavillon 3x3m - 500€</option><option value="750">Pavillon 4x4m - 750€</option><option value="800">Gartenhaus - 800€</option><option value="900">Pergola - 900€</option></select></div>
+                <div class="checkbox-group" onclick="toggleCB('fundament')"><input type="checkbox" id="fundament"><div class="checkbox-content"><div class="checkbox-title">Fundamente</div></div><span class="checkbox-price">+450€</span></div>
+                <div class="checkbox-group" onclick="toggleCB('dach')"><input type="checkbox" id="dach"><div class="checkbox-content"><div class="checkbox-title">Dacheindeckung</div></div><span class="checkbox-price">+300€</span></div>
+                <div class="checkbox-group" onclick="toggleCB('rinne')"><input type="checkbox" id="rinne"><div class="checkbox-content"><div class="checkbox-title">Regenrinne</div></div><span class="checkbox-price">+200€</span></div>
+                <div class="checkbox-group" onclick="toggleCB('lasur')"><input type="checkbox" id="lasur"><div class="checkbox-content"><div class="checkbox-title">Holz lasieren</div></div><span class="checkbox-price">+350€</span></div>`,
+            buro:`<h2 class="step-title">Büromöbel</h2><p class="step-subtitle">Professionelle Montage</p>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Schreibtische</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('bDesk',-1)">-</button><input type="number" class="qty-input" id="bDesk" value="0" min="0"><button class="qty-btn" onclick="changeQty('bDesk',1)">+</button></div><span class="qty-price">80€</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Büroschränke</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('bCab',-1)">-</button><input type="number" class="qty-input" id="bCab" value="0" min="0"><button class="qty-btn" onclick="changeQty('bCab',1)">+</button></div><span class="qty-price">120€</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Regalsysteme</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('bShelf',-1)">-</button><input type="number" class="qty-input" id="bShelf" value="0" min="0"><button class="qty-btn" onclick="changeQty('bShelf',1)">+</button></div><span class="qty-price">150€</span></div>`,
+            garten:`<h2 class="step-title">Gartenmöbel</h2><p class="step-subtitle">Outdoor Montage</p>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Lounge-Set</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('lounge',-1)">-</button><input type="number" class="qty-input" id="lounge" value="0" min="0"><button class="qty-btn" onclick="changeQty('lounge',1)">+</button></div><span class="qty-price">150€</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Essgruppe</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('gDining',-1)">-</button><input type="number" class="qty-input" id="gDining" value="0" min="0"><button class="qty-btn" onclick="changeQty('gDining',1)">+</button></div><span class="qty-price">120€</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Sonnenschirm</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('schirm',-1)">-</button><input type="number" class="qty-input" id="schirm" value="0" min="0"><button class="qty-btn" onclick="changeQty('schirm',1)">+</button></div><span class="qty-price">60€</span></div>
+                <div class="quantity-selector"><div class="quantity-label"><div class="quantity-label-title">Gasgrill</div></div><div class="quantity-controls"><button class="qty-btn" onclick="changeQty('grill',-1)">-</button><input type="number" class="qty-input" id="grill" value="0" min="0"><button class="qty-btn" onclick="changeQty('grill',1)">+</button></div><span class="qty-price">120€</span></div>
+                <div class="checkbox-group" onclick="toggleCB('markise')"><input type="checkbox" id="markise"><div class="checkbox-content"><div class="checkbox-title">Markise montieren</div></div><span class="checkbox-price">+300€</span></div>`,
+            andere:`<h2 class="step-title">Andere Möbel</h2><p class="step-subtitle">Spezielle Montagen</p>
+                <div class="form-group"><label class="form-label">Art</label><select class="form-select" id="andereTyp"><option value="0">Wählen...</option><option value="200">Wohnwand - 200€</option><option value="150">Badmöbel - 150€</option><option value="300">Kinderzimmer - 300€</option><option value="250">Schlafzimmer - 250€</option><option value="400">Einbauschrank - 400€</option></select></div>
+                <div class="checkbox-group" onclick="toggleCB('sonder')"><input type="checkbox" id="sonder"><div class="checkbox-content"><div class="checkbox-title">Sonderanfertigung</div></div><span class="checkbox-price">+150€</span></div>`
+        };
+        function selectCategory(cat){document.querySelectorAll('.option-card').forEach(c=>c.classList.remove('selected'));document.querySelector(`[data-category="${cat}"]`).classList.add('selected');selectedCategory=cat;}
+        function nextStep(){if(currentStep===1&&!selectedCategory){alert('Bitte Kategorie wählen!');return;}if(currentStep===1)document.getElementById('step2Content').innerHTML=categoryDetails[selectedCategory];if(currentStep<5){currentStep++;updateUI();if(currentStep===5)generateSummary();}}
+        function previousStep(){if(currentStep>1){currentStep--;updateUI();}}
+        function updateUI(){document.querySelectorAll('.wizard-step').forEach(s=>s.classList.remove('active'));document.querySelector(`.wizard-step[data-step="${currentStep}"]`).classList.add('active');document.querySelectorAll('.progress-step').forEach((s,i)=>{s.classList.remove('active','completed');if(i<currentStep-1)s.classList.add('completed');if(i===currentStep-1)s.classList.add('active');});document.getElementById('progressLine').style.width=((currentStep-1)/4*100)+'%';document.getElementById('prevBtn').style.display=currentStep>1?'block':'none';document.getElementById('nextBtn').style.display=currentStep<5?'block':'none';document.getElementById('finishBtn').style.display=currentStep===5?'block':'none';}
+        function changeQty(id,d){const el=document.getElementById(id);if(el){let v=parseInt(el.value)||0;el.value=Math.max(0,v+d);}}
+        function toggleCB(id){const el=document.getElementById(id);if(el)el.checked=!el.checked;}
+        function updateDistance(){const v=document.getElementById('distance').value;document.getElementById('distanceValue').textContent=v;document.getElementById('anfahrtInfo').textContent=v<=30?'0-30km: Kostenlos ✓':v<=70?'30-70km: +50€':'70-150km: +120€';}
+        function gv(id){const el=document.getElementById(id);return el?(parseInt(el.value)||0):0;}
+        function ic(id){const el=document.getElementById(id);return el?el.checked:false;}
+        function generateSummary(){let t=0,items=[];const prices={pax2:100,pax3:180,pax4:320,bed1:80,bed2:120,bed3:180,regal:70,kommode:90,desk:60,tvbank:80,nacht:40,uSchrank:55,oSchrank:65,hSchrank:90,bDesk:80,bCab:120,bShelf:150,lounge:150,gDining:120,schirm:60,grill:120};for(const[id,p]of Object.entries(prices)){const q=gv(id);if(q>0){t+=q*p;items.push({l:`${q}× Möbel`,p:q*p});}}
+        if(gv('carportTyp')>0){t+=gv('carportTyp');items.push({l:'Carport/Pavillon',p:gv('carportTyp')});}
+        if(gv('andereTyp')>0){t+=gv('andereTyp');items.push({l:'Möbelmontage',p:gv('andereTyp')});}
+        const checks={arbeitsplatte:200,spule:130,herd:90,geschirrsp:100,dunst:140,alteK:400,fundament:450,dach:300,rinne:200,lasur:350,markise:300,sonder:150,demontage:250,wandmontage:100,verpackung:60,reinigung:80,beleuchtung:120,schwierig:80};for(const[id,p]of Object.entries(checks)){if(ic(id)){t+=p;items.push({l:id,p:p});}}
+        const kipp=gv('kippsicherung');if(kipp>0){t+=kipp*25;items.push({l:`${kipp}× Kippsicherung`,p:kipp*25});}
+        const dist=gv('distance');if(dist>30&&dist<=70){t+=50;items.push({l:'Anfahrt',p:50});}else if(dist>70){t+=120;items.push({l:'Anfahrt',p:120});}
+        const et=document.getElementById('etage')?.value||'eg';const etP={'1-nl':50,'2-nl':80,'3+-nl':150};if(etP[et]){t+=etP[et];items.push({l:'Etage ohne Lift',p:etP[et]});}
+        const term=document.getElementById('termin')?.value||'normal';if(term!=='normal'){const auf=Math.round(t*(term==='express'?0.2:0.25));t+=auf;items.push({l:'Termin-Aufschlag',p:auf});}
+        if(t>0&&t<80){items.push({l:'Mindestbestellung',p:80-t});t=80;}
+        const mwst=Math.round(t*0.19),ges=t+mwst;
+        let h='<h3>📋 Ihre Kalkulation</h3>';if(items.length===0)h+='<p style="text-align:center;padding:1rem;opacity:0.8;">Keine Auswahl</p>';else{items.forEach(i=>h+=`<div class="final-item"><span>${i.l}</span><span>${i.p}€</span></div>`);h+=`<div class="final-item" style="border-top:2px solid rgba(255,255,255,0.3);margin-top:0.8rem;padding-top:0.8rem;"><span><strong>Netto:</strong></span><span><strong>${t}€</strong></span></div><div class="final-item"><span>MwSt 19%:</span><span>${mwst}€</span></div><div class="final-total">GESAMT: ${ges}€</div><p style="text-align:center;font-size:0.8rem;opacity:0.9;">Unverbindlich. Endpreis nach Besichtigung.</p>`;}
+        document.getElementById('finalSummary').innerHTML=h;}
+        function resetCalc(){currentStep=1;selectedCategory=null;document.querySelectorAll('.option-card').forEach(c=>c.classList.remove('selected'));document.querySelectorAll('input[type="checkbox"]').forEach(c=>c.checked=false);document.querySelectorAll('.qty-input').forEach(i=>i.value='0');document.getElementById('distance').value=20;updateDistance();updateUI();document.querySelector('.wizard-wrapper').scrollIntoView({behavior:'smooth'});}
+        document.addEventListener('DOMContentLoaded',updateUI);
+    </script>
+</body>
+</html>

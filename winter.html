@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winterdienst | P&N Gebäudeservice Bürstadt</title>
+    <meta name="description" content="Professioneller Winterdienst in Bürstadt. Schneeräumung vor 7 Uhr, Salzen, Bereitschaft 60-200€/Monat.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --gold:#D4AF37; --dark:#1a1a1a; --gray:#333; --light:#F5F5F5; --blue:#3B82F6; }
+        body { font-family:'Inter',sans-serif; color:var(--gray); line-height:1.6; }
+        header { position:fixed; top:0; width:100%; background:rgba(255,255,255,0.98); backdrop-filter:blur(10px); box-shadow:0 2px 30px rgba(0,0,0,0.1); z-index:1000; }
+        nav { max-width:1600px; margin:0 auto; padding:1.2rem 3rem; display:flex; justify-content:space-between; align-items:center; }
+        .logo { display:flex; align-items:center; gap:1rem; }
+        .logo-shield { width:50px; height:60px; background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.5rem; color:var(--dark); }
+        .logo-text { font-size:1.5rem; font-weight:900; color:var(--dark); }
+        .nav-links { display:flex; gap:2.5rem; list-style:none; }
+        .nav-links a { text-decoration:none; color:var(--gray); font-weight:600; }
+        .cta-header { background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); color:var(--dark); padding:0.9rem 2.5rem; border-radius:50px; text-decoration:none; font-weight:700; }
+        .hero-service { margin-top:90px; padding:6rem 3rem; background:linear-gradient(135deg,#1e40af 0%,var(--blue) 100%); color:#fff; text-align:center; }
+        .hero-icon { font-size:6rem; margin-bottom:1.5rem; }
+        .hero-service h1 { font-size:4rem; font-weight:900; margin-bottom:1.5rem; }
+        .hero-service p { font-size:1.3rem; color:rgba(255,255,255,0.95); max-width:800px; margin:0 auto 2rem; }
+        .hero-badges { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; }
+        .badge { background:rgba(255,255,255,0.15); padding:0.8rem 1.5rem; border-radius:50px; }
+        .section { padding:8rem 3rem; max-width:1400px; margin:0 auto; }
+        .section-header { text-align:center; margin-bottom:5rem; }
+        .section-label { color:var(--gold); font-weight:700; text-transform:uppercase; letter-spacing:0.15rem; font-size:0.9rem; margin-bottom:1rem; }
+        .section-title { font-size:3rem; font-weight:900; color:var(--dark); margin-bottom:1.5rem; }
+        .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3rem; }
+        .service-card { background:#fff; padding:2.5rem; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.08); border-top:4px solid var(--blue); }
+        .service-icon { font-size:3.5rem; margin-bottom:1rem; }
+        .service-card h3 { font-size:1.6rem; font-weight:700; margin-bottom:1rem; }
+        .service-card ul { list-style:none; }
+        .service-card li { padding:0.5rem 0; padding-left:2rem; position:relative; }
+        .service-card li::before { content:'✓'; position:absolute; left:0; color:var(--blue); font-weight:900; }
+        .preise { background:var(--light); }
+        .preis-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:3rem; margin-top:4rem; }
+        .preis-card { background:#fff; padding:3rem; border-radius:20px; }
+        .preis-card h3 { font-size:1.8rem; margin-bottom:1rem; }
+        .preis-card .price { font-size:3rem; font-weight:900; color:var(--blue); margin:1.5rem 0; }
+        .preis-card ul { list-style:none; }
+        .preis-card li { padding:0.6rem 0; padding-left:2rem; position:relative; }
+        .preis-card li::before { content:'✓'; position:absolute; left:0; color:var(--blue); font-weight:900; }
+        .faq { background:#fff; }
+        .faq-list { max-width:900px; margin:4rem auto 0; }
+        .faq-item { background:var(--light); padding:2rem; border-radius:15px; margin-bottom:1.5rem; border-left:4px solid var(--blue); }
+        .faq-item h3 { color:var(--dark); font-size:1.3rem; margin-bottom:1rem; }
+        .cta-section { background:linear-gradient(135deg,var(--dark) 0%,#2d2d2d 100%); padding:8rem 3rem; text-align:center; color:#fff; }
+        .cta-section h2 { font-size:3.5rem; font-weight:900; margin-bottom:1.5rem; }
+        .cta-btn { display:inline-block; background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); color:var(--dark); padding:1.2rem 3rem; border-radius:50px; text-decoration:none; font-weight:700; }
+        footer { background:var(--dark); color:rgba(255,255,255,0.8); padding:5rem 3rem 2rem; }
+        .footer-content { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:4rem; }
+        .footer-section h3 { color:var(--gold); margin-bottom:1.5rem; }
+        .footer-section ul { list-style:none; }
+        .footer-section a { color:rgba(255,255,255,0.8); text-decoration:none; }
+        @media (max-width:768px) { .nav-links { display:none; } .services-grid, .preis-grid { grid-template-columns:1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-shield">P&N</div>
+                <div><div class="logo-text">P&N GEBÄUDESERVICE</div></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leistungen.html">Leistungen</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <a href="angebot.html" class="cta-header">Angebot anfragen</a>
+        </nav>
+    </header>
+
+    <section class="hero-service">
+        <div class="hero-icon">❄️</div>
+        <h1>Winterdienst</h1>
+        <p>Zuverlässiger Winterdienst für Ihre Verkehrssicherungspflicht. Schneeräumung vor 7 Uhr, Salzen, Bereitschaftsdienst November-März.</p>
+        <div class="hero-badges">
+            <div class="badge">✓ November - März</div>
+            <div class="badge">✓ Ab 4,50€/m²</div>
+            <div class="badge">✓ Vor 7 Uhr fertig</div>
+            <div class="badge">✓ Pakete verfügbar</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">UNSERE WINTERLEISTUNGEN</div>
+            <h2 class="section-title">Sicher durch den Winter</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">⛄</div>
+                <h3>Schneeräumung</h3>
+                <ul>
+                    <li>Vor 7 Uhr morgens</li>
+                    <li>Gehwege frei</li>
+                    <li>Einfahrten</li>
+                    <li>Parkplätze</li>
+                    <li>Professionell</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🧂</div>
+                <h3>Streuen & Salzen</h3>
+                <ul>
+                    <li>Salz oder Split</li>
+                    <li>Rutschfrei</li>
+                    <li>Verkehrssicher</li>
+                    <li>Material inklusive</li>
+                    <li>Nach Bedarf</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📅</div>
+                <h3>Bereitschaftsdienst</h3>
+                <ul>
+                    <li>November - März</li>
+                    <li>5 Monate Saison</li>
+                    <li>Immer erreichbar</li>
+                    <li>Wir entscheiden</li>
+                    <li>Dokumentiert</li>
+                    <li>Zuverlässig</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section preise">
+        <div class="section-header">
+            <div class="section-label">PREISE</div>
+            <h2 class="section-title">Winterdienst Preise</h2>
+            <p class="section-subtitle">Nach Quadratmeter - Großere Flächen = günstiger</p>
+        </div>
+        <div class="preis-grid">
+            <div class="preis-card">
+                <h3>Pro Quadratmeter</h3>
+                <div class="price">4,50€ <span style="font-size:1.2rem;">/m²</div>
+                <ul>
+                    <li>Basispreis kleine Flächen</li>
+                    <li>Schneeräumen + Salzen</li>
+                    <li>Vor 7 Uhr fertig</li>
+                    <li>Material inklusive</li>
+                    <li>Pro Einsatz berechnet</li>
+                </ul>
+                <div style="margin-top:2rem; padding:1.5rem; background:rgba(59,130,246,0.1); border-radius:10px;">
+                    <strong>Beispiel 100m²:</strong><br>
+                    100m² × 4,50€ = 450€/Einsatz
+                </div>
+            </div>
+            <div class="preis-card">
+                <h3>Saisonpakete</h3>
+                <div class="price">Staffelpreise</div>
+                <ul>
+                    <li><strong>Bis 200m²:</strong> 4,50€/m²</li>
+                    <li><strong>200-500m²:</strong> 4,00€/m²</li>
+                    <li><strong>500-1.000m²:</strong> 3,50€/m²</li>
+                    <li><strong>Über 1.000m²:</strong> 3,00€/m²</li>
+                    <li>Mehrere Objekte: Extra Rabatt</li>
+                </ul>
+                <div style="margin-top:2rem; padding:1.5rem; background:rgba(59,130,246,0.1); border-radius:10px;">
+                    <strong>Beispiel 600m²:</strong><br>
+                    600m² × 3,50€ = 2.100€/Einsatz
+                </div>
+            </div>
+        </div>
+        
+        <div style="background:#fff; padding:3rem; border-radius:20px; margin-top:4rem; max-width:900px; margin-left:auto; margin-right:auto; border-left:4px solid var(--blue);">
+            <h3 style="color:var(--dark); margin-bottom:1.5rem; font-size:1.8rem;">📊 Bereitschaftspauschale Optional</h3>
+            <p style="color:var(--gray); line-height:1.8; margin-bottom:1rem;">
+                <strong>Bereitschaft November-März (5 Monate):</strong><br>
+                60-200€/Monat je nach Objektgröße = 300-1.000€ Saison
+            </p>
+            <p style="color:var(--gray); line-height:1.8;">
+                <strong>Einsätze werden zusätzlich nach m² berechnet.</strong><br>
+                Die Bereitschaft garantiert, dass wir täglich kontrollieren und bei Bedarf vor 7 Uhr räumen - Sie müssen sich um nichts kümmern!
+            </p>
+        </div>
+    </section>
+
+    <section class="section faq">
+        <div class="section-header">
+            <h2 class="section-title">Winterdienst Fragen</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <h3>Wann ist die Wintersaison?</h3>
+                <p>November bis März (5 Monate). Das sind die Monate wo Schnee und Eis auftreten können.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Wie wird berechnet?</h3>
+                <p>Nach Quadratmeter: 4,50€/m² für kleine Flächen, bei größeren Flächen Staffelpreise (bis zu 3,00€/m²). Pro Einsatz berechnet.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Was kostet die Bereitschaft?</h3>
+                <p>60-200€/Monat je nach Objektgröße. Für 5 Monate (Nov-März) = 300-1.000€ Saison. Garantiert tägliche Kontrolle und Räumung bei Bedarf.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Ist Salz im Preis?</h3>
+                <p>Ja! Salz und Split sind im m²-Preis enthalten. Sie zahlen nur nach Fläche.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Wer entscheidet wann geräumt wird?</h3>
+                <p>Mit Bereitschaft: Wir! Wir kontrollieren täglich und räumen bei Bedarf vor 7 Uhr. Ohne Bereitschaft: Sie rufen an wenn Schnee liegt.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Was bei mehreren Objekten?</h3>
+                <p>Extra Rabatt! Bei 2-3 Objekten günstigerer Staffelpreis. Ab 4 Objekten individuelle Konditionen.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Sicher durch den Winter!</h2>
+        <a href="angebot.html" class="cta-btn">Jetzt Angebot anfragen →</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>P&N Garten und Reinigung</h3>
+                <p>Martinstraße 2a<br>68642 Bürstadt</p>
+            </div>
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+            
+                <p><strong>Telefon:</strong><br>+49 174 7021338</p>
+                <p><strong>E-Mail:</strong><br><a href="mailto:info@pn-garten-und-reinigung.com" style="color: var(--gold);">info@pn-garten-und-reinigung.com</a></p>
+                <p><strong>WhatsApp:</strong><br><a href="https://wa.me/491747021338" style="color: var(--gold);">Nachricht senden</a></p>
+            </div>
+            <div class="footer-section">
+            <div class="footer-section">
+                <h3>Business</h3>
+                <ul>
+                    <li><a href="b2b-partner.html">B2B Partner</a></li>
+                    <li><a href="premium-kunden.html">Premium Kunden</a></li>
+                </ul>
+            </div>
+
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a
+            <div class="footer-section">
+                <h3>Business</h3>
+                <ul>
+                    <li><a href="b2b-partner.html">B2B Partner</a></li>
+                    <li><a href="premium-kunden.html">Premium Kunden</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                    <li><a href="agb.html">AGB</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 P&N Garten und Reinigung. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B Partnerschaft | P&N Gebäudeservice</title>
+    <meta name="description" content="B2B Partnerschaften mit P&N Gebäudeservice. Sonderkonditionen für Baustoffhändler, Immobilienentwickler, Property Management.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --gold:#D4AF37; --dark:#1a1a1a; --gray:#333; --light:#F5F5F5; }
+        body { font-family:'Inter',sans-serif; color:var(--gray); line-height:1.6; }
+        
+        header { position:fixed; top:0; width:100%; background:rgba(255,255,255,0.98); backdrop-filter:blur(10px); box-shadow:0 2px 30px rgba(0,0,0,0.1); z-index:1000; }
+        nav { max-width:1600px; margin:0 auto; padding:1.2rem 3rem; display:flex; justify-content:space-between; align-items:center; }
+        .logo { display:flex; align-items:center; gap:1rem; }
+        .logo-shield { width:50px; height:60px; background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.5rem; color:var(--dark); }
+        .logo-text { font-size:1.5rem; font-weight:900; color:var(--dark); }
+        .nav-links { display:flex; gap:2.5rem; list-style:none; }
+        .nav-links a { text-decoration:none; color:var(--gray); font-weight:600; transition:color 0.3s; }
+        .nav-links a:hover { color:var(--gold); }
+        .cta-header { background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); color:var(--dark); padding:0.9rem 2.5rem; border-radius:50px; text-decoration:none; font-weight:700; }
+        
+        .hero-b2b { margin-top:90px; padding:8rem 3rem; background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%); color:#fff; }
+        .hero-content { max-width:1200px; margin:0 auto; text-align:center; }
+        .hero-icon { font-size:7rem; margin-bottom:2rem; }
+        .hero-content h1 { font-size:4.5rem; font-weight:900; margin-bottom:2rem; line-height:1.1; }
+        .hero-content p { font-size:1.5rem; color:rgba(255,255,255,0.95); margin-bottom:3rem; line-height:1.8; max-width:900px; margin-left:auto; margin-right:auto; }
+        .hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:3rem; margin-top:4rem; }
+        .stat-box { background:rgba(255,255,255,0.15); padding:2.5rem; border-radius:20px; backdrop-filter:blur(10px); }
+        .stat-number { font-size:3.5rem; font-weight:900; color:#fbbf24; margin-bottom:0.5rem; }
+        .stat-label { font-size:1.2rem; color:rgba(255,255,255,0.9); }
+        
+        .section { padding:8rem 3rem; max-width:1400px; margin:0 auto; }
+        .section-header { text-align:center; margin-bottom:5rem; }
+        .section-label { color:var(--gold); font-weight:700; text-transform:uppercase; letter-spacing:0.15rem; font-size:0.9rem; margin-bottom:1rem; }
+        .section-title { font-size:3.5rem; font-weight:900; color:var(--dark); margin-bottom:1.5rem; }
+        .section-subtitle { font-size:1.3rem; color:var(--gray); max-width:800px; margin:0 auto; line-height:1.8; }
+        
+        .partner-types { background:var(--light); }
+        .types-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3rem; margin-top:4rem; }
+        .type-card { background:#fff; padding:3.5rem 3rem; border-radius:25px; box-shadow:0 10px 50px rgba(0,0,0,0.08); transition:all 0.3s; border-top:4px solid var(--gold); }
+        .type-card:hover { transform:translateY(-10px); box-shadow:0 20px 70px rgba(0,0,0,0.12); }
+        .type-icon { font-size:4rem; margin-bottom:1.5rem; }
+        .type-card h3 { font-size:2rem; font-weight:800; color:var(--dark); margin-bottom:1rem; }
+        .type-card p { color:var(--gray); line-height:1.8; margin-bottom:2rem; font-size:1.1rem; }
+        .type-card ul { list-style:none; }
+        .type-card li { padding:0.8rem 0; padding-left:2rem; position:relative; color:var(--gray); font-size:1.05rem; }
+        .type-card li::before { content:'✓'; position:absolute; left:0; color:var(--gold); font-weight:900; font-size:1.3rem; }
+        
+        .benefits { background:#fff; }
+        .benefits-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:3rem; margin-top:4rem; }
+        .benefit-card { background:var(--light); padding:3rem; border-radius:20px; border-left:4px solid var(--gold); }
+        .benefit-icon { font-size:3.5rem; margin-bottom:1.5rem; }
+        .benefit-card h3 { font-size:1.8rem; font-weight:800; color:var(--dark); margin-bottom:1rem; }
+        .benefit-card p { color:var(--gray); line-height:1.8; font-size:1.1rem; }
+        
+        .trust-section { background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); padding:8rem 3rem; color:var(--dark); }
+        .trust-content { max-width:1200px; margin:0 auto; text-align:center; }
+        .trust-content h2 { font-size:3.5rem; font-weight:900; margin-bottom:2rem; }
+        .trust-content p { font-size:1.3rem; line-height:1.8; margin-bottom:3rem; }
+        .trust-points { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; margin-top:3rem; }
+        .trust-point { background:rgba(0,0,0,0.05); padding:2rem; border-radius:15px; }
+        .trust-point-icon { font-size:3rem; margin-bottom:1rem; }
+        .trust-point h4 { font-size:1.3rem; margin-bottom:0.5rem; }
+        
+        .contact-b2b { background:var(--light); }
+        .contact-box { background:#fff; max-width:900px; margin:0 auto; padding:4rem; border-radius:25px; box-shadow:0 10px 50px rgba(0,0,0,0.08); border-top:4px solid var(--gold); }
+        .contact-box h3 { font-size:2rem; color:var(--dark); margin-bottom:2rem; }
+        .contact-methods { display:grid; grid-template-columns:repeat(2,1fr); gap:2rem; margin-bottom:3rem; }
+        .contact-method { padding:1.5rem; background:var(--light); border-radius:15px; }
+        .contact-method strong { display:block; color:var(--gold); margin-bottom:0.5rem; }
+        
+        .cta-section { background:linear-gradient(135deg,var(--dark) 0%,#2d2d2d 100%); padding:8rem 3rem; text-align:center; color:#fff; }
+        .cta-section h2 { font-size:3.5rem; font-weight:900; margin-bottom:1.5rem; }
+        .cta-section p { font-size:1.3rem; margin-bottom:3rem; color:rgba(255,255,255,0.8); }
+        .cta-btn { display:inline-block; background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); color:var(--dark); padding:1.5rem 4rem; border-radius:50px; text-decoration:none; font-weight:700; font-size:1.2rem; transition:all 0.3s; }
+        .cta-btn:hover { transform:translateY(-5px); box-shadow:0 20px 40px rgba(212,175,55,0.3); }
+        
+        footer { background:var(--dark); color:rgba(255,255,255,0.8); padding:5rem 3rem 2rem; }
+        .footer-content { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:4rem; margin-bottom:3rem; }
+        .footer-section h3 { color:var(--gold); margin-bottom:1.5rem; }
+        .footer-section ul { list-style:none; }
+        .footer-section ul li { margin-bottom:0.8rem; }
+        .footer-section a { color:rgba(255,255,255,0.8); text-decoration:none; }
+        .footer-section a:hover { color:var(--gold); }
+        .footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:2rem; text-align:center; color:rgba(255,255,255,0.6); }
+        
+        @media (max-width:1024px) { .hero-stats, .types-grid { grid-template-columns:1fr; } .benefits-grid { grid-template-columns:1fr; } .trust-points, .contact-methods { grid-template-columns:repeat(2,1fr); } }
+        @media (max-width:768px) { .nav-links { display:none; } .hero-content h1 { font-size:2.5rem; } .trust-points, .contact-methods { grid-template-columns:1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-shield">P&N</div>
+                <div><div class="logo-text">P&N GEBÄUDESERVICE</div></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leistungen.html">Leistungen</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <a href="kontakt.html" class="cta-header">Partner werden</a>
+        </nav>
+    </header>
+
+    <section class="hero-b2b">
+        <div class="hero-content">
+            <div class="hero-icon">🤝</div>
+            <h1>B2B Partnerschaft</h1>
+            <p>Werden Sie Partner von P&N Gebäudeservice. Gemeinsam schaffen wir Mehrwert durch Sonderkonditionen, verlässliche Zusammenarbeit und langfristige Geschäftsbeziehungen.</p>
+            
+            <div class="hero-stats">
+                <div class="stat-box">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Jahre Erfahrung</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Zuverlässigkeit</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">11</div>
+                    <div class="stat-label">Dienstleistungen</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section partner-types">
+        <div class="section-header">
+            <div class="section-label">PARTNER-KATEGORIEN</div>
+            <h2 class="section-title">Wir suchen Partner in diesen Bereichen</h2>
+            <p class="section-subtitle">Gemeinsam stark - Von Materiallieferanten bis Immobilienentwicklern</p>
+        </div>
+        
+        <div class="types-grid">
+            
+            <div class="type-card">
+                <div class="type-icon">🏗️</div>
+                <h3>Baustoffhändler & Lieferanten</h3>
+                <p>Partnerschaft mit Baustoff- und Materiallieferanten für Sonderkonditionen und verlässliche Abnahme.</p>
+                <ul>
+                    <li>WPC & Terrassendielen</li>
+                    <li>Pflastersteine & Platten</li>
+                    <li>Holz & Baumaterial</li>
+                    <li>Gartenmaterial</li>
+                    <li>Regelmäßige Großbestellungen</li>
+                    <li>Sonderkonditionen erwünscht</li>
+                </ul>
+            </div>
+            
+            <div class="type-card">
+                <div class="type-icon">🏢</div>
+                <h3>Immobilienentwickler & Bauträger</h3>
+                <p>Zuverlässiger Partner für Neubau und Renovierungsprojekte mit kompletten Dienstleistungspaketen.</p>
+                <ul>
+                    <li>Komplette Außenanlagen</li>
+                    <li>Hausmeisterservice ab Fertigstellung</li>
+                    <li>Renovierung Altbauten</li>
+                    <li>Winterdienst Großprojekte</li>
+                    <li>Langfristige Betreuung</li>
+                    <li>Staffelpreise Mehrfachobjekte</li>
+                </ul>
+            </div>
+            
+            <div class="type-card">
+                <div class="type-icon">🏘️</div>
+                <h3>Property Management & Hausverwaltungen</h3>
+                <p>Komplettlösungen für Objektbetreuung mit transparenten Preisen und dokumentierten Services.</p>
+                <ul>
+                    <li>Hausmeisterservice Portfolio</li>
+                    <li>Reinigung & Pflege</li>
+                    <li>Winterdienst Mehrfachobjekte</li>
+                    <li>Notdienst & Reparaturen</li>
+                    <li>Dokumentierte Leistungen</li>
+                    <li>Feste Ansprechpartner</li>
+                </ul>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="section benefits">
+        <div class="section-header">
+            <div class="section-label">IHRE VORTEILE</div>
+            <h2 class="section-title">Warum P&N als Partner?</h2>
+        </div>
+        
+        <div class="benefits-grid">
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>Sonderkonditionen & Staffelpreise</h3>
+                <p>Bei regelmäßigen Großaufträgen bieten wir attraktive Staffelpreise. Je mehr Objekte, desto günstiger. Ab dem 2. Objekt -3%, ab dem 3. -5%, ab 4+ individuelle Konditionen.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">📋</div>
+                <h3>Transparente Abrechnung</h3>
+                <p>Klare Kalkulationen, detaillierte Leistungsnachweise, monatliche Reports. Sie wissen immer genau, wofür Sie zahlen. Digitale Dokumentation aller Einsätze.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Schnelle Reaktionszeiten</h3>
+                <p>Notdienste innerhalb von 24 Stunden, reguläre Anfragen binnen 48 Stunden bearbeitet. Ein fester Ansprechpartner für alle Ihre Objekte.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">🔧</div>
+                <h3>11 Services aus einer Hand</h3>
+                <p>Von Hausmeister über Garten bis Renovierung - alles aus einer Hand. Ein Vertrag, ein Ansprechpartner, koordinierte Abläufe. Weniger Aufwand für Sie.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">📊</div>
+                <h3>Langfristige Verträge möglich</h3>
+                <p>Jahresverträge mit Festpreisgarantie. Planungssicherheit für beide Seiten. Indexierung nach Vereinbarung möglich.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">🛡️</div>
+                <h3>Versichert & Zertifiziert</h3>
+                <p>Betriebshaftpflichtversicherung, Handwerkskammer-Mitgliedschaft, alle gesetzlichen Auflagen erfüllt. Null Risiko für Sie.</p>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="trust-section">
+        <div class="trust-content">
+            <h2>Warum Unternehmen uns vertrauen</h2>
+            <p>Von Einzelunternehmen zu Ihrem verlässlichen Partner für Gebäudeservice</p>
+            
+            <div class="trust-points">
+                <div class="trust-point">
+                    <div class="trust-point-icon">✅</div>
+                    <h4>Pünktlich</h4>
+                    <p>Termine werden eingehalten. Immer.</p>
+                </div>
+                <div class="trust-point">
+                    <div class="trust-point-icon">💎</div>
+                    <h4>Qualität</h4>
+                    <p>Professionelle Arbeit auf Handwerksniveau</p>
+                </div>
+                <div class="trust-point">
+                    <div class="trust-point-icon">📱</div>
+                    <h4>Erreichbar</h4>
+                    <p>Direkter Draht zum Inhaber</p>
+                </div>
+                <div class="trust-point">
+                    <div class="trust-point-icon">🤝</div>
+                    <h4>Fair</h4>
+                    <p>Ehrliche Preise, keine versteckten Kosten</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact-b2b">
+        <div class="section-header">
+            <div class="section-label">KONTAKT</div>
+            <h2 class="section-title">Lassen Sie uns über eine Partnerschaft sprechen</h2>
+        </div>
+        
+        <div class="contact-box">
+            <h3>📞 Direkter Draht zum Inhaber</h3>
+            <p style="color:var(--gray); margin-bottom:2rem; line-height:1.8;">
+                Alle B2B-Partnerschaften verhandle ich persönlich. Sie sprechen direkt mit Paul Zuga, dem Inhaber - keine Vermittler, keine Umwege.
+            </p>
+            
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <strong>📱 WhatsApp Business:</strong>
+                    <p>+49 174 7021338<br>Schnellste Antwort</p>
+                </div>
+                <div class="contact-method">
+                    <strong>📧 E-Mail:</strong>
+                </div>
+                <div class="contact-method">
+                    <strong>☎️ Telefon:</strong>
+                    <p>+49 174 7021338<br>Mo-Fr 8:00-18:00 Uhr</p>
+                </div>
+                <div class="contact-method">
+                    <strong>🏢 Persönlich:</strong>
+                    <p>Martinstraße 2a, 68642 Bürstadt<br>Nach Terminvereinbarung</p>
+                </div>
+            </div>
+            
+            <div style="background:var(--light); padding:2rem; border-radius:15px; margin-top:2rem;">
+                <h4 style="color:var(--dark); margin-bottom:1rem;">📋 Was ich für unser Gespräch brauche:</h4>
+                <ul style="list-style:none; padding:0;">
+                    <li style="padding:0.5rem 0; padding-left:2rem; position:relative;"><span style="position:absolute; left:0; color:var(--gold); font-weight:900;">• Ihre Branche und Unternehmensgröße</li>
+                    <li style="padding:0.5rem 0; padding-left:2rem; position:relative;"><span style="position:absolute; left:0; color:var(--gold); font-weight:900;">• Anzahl der Objekte / Projektvolumen</li>
+                    <li style="padding:0.5rem 0; padding-left:2rem; position:relative;"><span style="position:absolute; left:0; color:var(--gold); font-weight:900;">• Welche Services Sie benötigen</li>
+                    <li style="padding:0.5rem 0; padding-left:2rem; position:relative;"><span style="position:absolute; left:0; color:var(--gold); font-weight:900;">• Ihre Erwartungen an eine Partnerschaft</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Bereit für eine starke Partnerschaft?</h2>
+        <p>Lassen Sie uns gemeinsam wachsen</p>
+        <a href="kontakt.html" class="cta-btn">Jetzt Partner werden →</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>P&N Garten und Reinigung</h3>
+                <p>Martinstraße 2a<br>68642 Bürstadt</p>
+            </div>
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+            
+                <p><strong>Telefon:</strong><br>+49 174 7021338</p>
+                <p><strong>E-Mail:</strong><br><a href="mailto:info@pn-garten-und-reinigung.com" style="color: var(--gold);">info@pn-garten-und-reinigung.com</a></p>
+                <p><strong>WhatsApp:</strong><br><a href="https://wa.me/491747021338" style="color: var(--gold);">Nachricht senden</a></p>
+            </div>
+            <div class="footer-section">
+            <div class="footer-section">
+                <h3>Business</h3>
+                <ul>
+                    <li><a href="b2b-partner.html">B2B Partner</a></li>
+            <div class="footer-section">
+                <h3>Business</h3>
+                <ul>
+                    <li><a href="b2b-partner.html">B2B Partner</a></li>
+                    <li><a href="premium-kunden.html">Premium Kunden</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                    <li><a href="agb.html">AGB</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 P&N Garten und Reinigung. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+</body>
+</html>

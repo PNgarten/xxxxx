@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Kunden Programm | P&N Gebäudeservice</title>
+    <meta name="description" content="Premium Kundenprogramm von P&N. Individuelle Jahrespakete, Sonderkonditionen, Priority Service. Langfristige Partnerschaft zahlt sich aus.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --gold:#D4AF37; --dark:#1a1a1a; --gray:#333; --light:#F5F5F5; }
+        body { font-family:'Inter',sans-serif; color:var(--gray); line-height:1.6; }
+        
+        header { position:fixed; top:0; width:100%; background:rgba(255,255,255,0.98); backdrop-filter:blur(10px); box-shadow:0 2px 30px rgba(0,0,0,0.1); z-index:1000; }
+        nav { max-width:1600px; margin:0 auto; padding:1.2rem 3rem; display:flex; justify-content:space-between; align-items:center; }
+        .logo { display:flex; align-items:center; gap:1rem; }
+        .logo-shield { width:50px; height:60px; background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.5rem; color:var(--dark); }
+        .logo-text { font-size:1.5rem; font-weight:900; color:var(--dark); }
+        .nav-links { display:flex; gap:2.5rem; list-style:none; }
+        .nav-links a { text-decoration:none; color:var(--gray); font-weight:600; }
+        .cta-header { background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); color:var(--dark); padding:0.9rem 2.5rem; border-radius:50px; text-decoration:none; font-weight:700; }
+        
+        .hero-premium { margin-top:90px; padding:8rem 3rem; background:linear-gradient(135deg,#7C3AED 0%,#A78BFA 100%); color:#fff; }
+        .hero-content { max-width:1200px; margin:0 auto; text-align:center; }
+        .hero-icon { font-size:7rem; margin-bottom:2rem; }
+        .hero-content h1 { font-size:4.5rem; font-weight:900; margin-bottom:2rem; line-height:1.1; }
+        .hero-content .subtitle { font-size:1.8rem; color:#fbbf24; font-weight:700; margin-bottom:1.5rem; }
+        .hero-content p { font-size:1.4rem; color:rgba(255,255,255,0.95); margin-bottom:3rem; line-height:1.8; max-width:900px; margin-left:auto; margin-right:auto; }
+        
+        .section { padding:8rem 3rem; max-width:1400px; margin:0 auto; }
+        .section-header { text-align:center; margin-bottom:5rem; }
+        .section-label { color:var(--gold); font-weight:700; text-transform:uppercase; letter-spacing:0.15rem; font-size:0.9rem; margin-bottom:1rem; }
+        .section-title { font-size:3.5rem; font-weight:900; color:var(--dark); margin-bottom:1.5rem; }
+        .section-subtitle { font-size:1.3rem; color:var(--gray); max-width:800px; margin:0 auto; line-height:1.8; }
+        
+        .benefits { background:var(--light); }
+        .benefits-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3rem; margin-top:4rem; }
+        .benefit-card { background:#fff; padding:3rem 2.5rem; border-radius:25px; box-shadow:0 10px 50px rgba(0,0,0,0.08); text-align:center; border-top:4px solid var(--gold); transition:all 0.3s; }
+        .benefit-card:hover { transform:translateY(-10px); box-shadow:0 20px 70px rgba(0,0,0,0.12); }
+        .benefit-icon { font-size:4rem; margin-bottom:1.5rem; }
+        .benefit-card h3 { font-size:1.8rem; font-weight:800; color:var(--dark); margin-bottom:1rem; }
+        .benefit-card p { color:var(--gray); line-height:1.8; font-size:1.05rem; }
+        
+        .packages { background:#fff; }
+        .package-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3rem; margin-top:4rem; }
+        .package-card { background:var(--light); padding:4rem 3rem; border-radius:25px; position:relative; transition:all 0.3s; }
+        .package-card.featured { background:linear-gradient(135deg,#7C3AED 0%,#A78BFA 100%); color:#fff; transform:scale(1.05); border:3px solid var(--gold); }
+        .package-card.featured::before { content:'EMPFOHLEN'; position:absolute; top:-15px; left:50%; transform:translateX(-50%); background:var(--gold); color:var(--dark); padding:0.5rem 2rem; border-radius:50px; font-weight:900; font-size:0.85rem; }
+        .package-card:hover { transform:translateY(-10px) scale(1.03); }
+        .package-name { font-size:2rem; font-weight:800; margin-bottom:1rem; }
+        .package-price { font-size:2.5rem; font-weight:900; color:var(--gold); margin:1.5rem 0; }
+        .package-card.featured .package-price { color:#fbbf24; }
+        .package-desc { margin-bottom:2rem; padding-bottom:2rem; border-bottom:2px solid rgba(0,0,0,0.1); line-height:1.8; }
+        .package-card.featured .package-desc { border-bottom-color:rgba(255,255,255,0.2); }
+        .package-features { list-style:none; margin-bottom:2rem; }
+        .package-features li { padding:0.8rem 0; padding-left:2rem; position:relative; }
+        .package-features li::before { content:'✓'; position:absolute; left:0; color:var(--gold); font-weight:900; font-size:1.3rem; }
+        .package-card.featured .package-features li::before { color:#fbbf24; }
+        
+        .how-it-works { background:var(--light); }
+        .steps-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; margin-top:4rem; }
+        .step-card { background:#fff; padding:2.5rem; border-radius:20px; text-align:center; }
+        .step-number { width:60px; height:60px; background:var(--gold); color:var(--dark); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:900; margin:0 auto 1.5rem; }
+        .step-card h4 { font-size:1.3rem; color:var(--dark); margin-bottom:1rem; }
+        .step-card p { color:var(--gray); line-height:1.7; }
+        
+        .testimonial { background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); padding:6rem 3rem; color:var(--dark); }
+        .testimonial-content { max-width:900px; margin:0 auto; text-align:center; }
+        .testimonial-quote { font-size:1.8rem; font-style:italic; line-height:1.8; margin-bottom:2rem; }
+        .testimonial-author { font-size:1.3rem; font-weight:700; }
+        
+        .cta-section { background:linear-gradient(135deg,var(--dark) 0%,#2d2d2d 100%); padding:8rem 3rem; text-align:center; color:#fff; }
+        .cta-section h2 { font-size:3.5rem; font-weight:900; margin-bottom:1.5rem; }
+        .cta-section p { font-size:1.3rem; margin-bottom:3rem; color:rgba(255,255,255,0.8); }
+        .cta-btn { display:inline-block; background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); color:var(--dark); padding:1.5rem 4rem; border-radius:50px; text-decoration:none; font-weight:700; font-size:1.2rem; transition:all 0.3s; }
+        .cta-btn:hover { transform:translateY(-5px); }
+        
+        footer { background:var(--dark); color:rgba(255,255,255,0.8); padding:5rem 3rem 2rem; }
+        .footer-content { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:4rem; }
+        .footer-section h3 { color:var(--gold); margin-bottom:1.5rem; }
+        .footer-section ul { list-style:none; }
+        .footer-section a { color:rgba(255,255,255,0.8); text-decoration:none; }
+        
+        @media (max-width:1024px) { .benefits-grid, .package-grid { grid-template-columns:1fr; } .steps-grid { grid-template-columns:repeat(2,1fr); } }
+        @media (max-width:768px) { .nav-links { display:none; } .hero-content h1 { font-size:2.5rem; } .steps-grid { grid-template-columns:1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-shield">P&N</div>
+                <div><div class="logo-text">P&N GEBÄUDESERVICE</div></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leistungen.html">Leistungen</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <a href="kontakt.html" class="cta-header">Premium werden</a>
+        </nav>
+    </header>
+
+    <section class="hero-premium">
+        <div class="hero-content">
+            <div class="hero-icon">👑</div>
+            <h1>Premium Kunden Programm</h1>
+            <div class="subtitle">Langfristige Partnerschaft. Exklusive Vorteile.</div>
+            <p>Werden Sie Premium-Kunde und profitieren Sie von individuellen Jahrespaketen, Sonderkonditionen und Priority Service. Treue wird belohnt.</p>
+        </div>
+    </section>
+
+    <section class="section benefits">
+        <div class="section-header">
+            <div class="section-label">PREMIUM VORTEILE</div>
+            <h2 class="section-title">Was Premium-Kunden erhalten</h2>
+            <p class="section-subtitle">Exklusive Benefits für Kunden, die uns langfristig vertrauen</p>
+        </div>
+        
+        <div class="benefits-grid">
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>Bis zu 15% Rabatt</h3>
+                <p>Bei Jahresverträgen sparen Sie bis zu 15% gegenüber Einzelleistungen. Je mehr Services, desto attraktiver der Preis.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Priority Service</h3>
+                <p>Premium-Kunden werden bevorzugt behandelt. Terminanfragen innerhalb 24h, Notdienste sofort.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">📅</div>
+                <h3>Feste Termine</h3>
+                <p>Ihre Termine sind fix reserviert. Kein Warten, keine Terminverschiebungen (außer bei Unwetter).</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">🎁</div>
+                <h3>Bonus-Leistungen</h3>
+                <p>1× pro Jahr kostenloser Check-up Ihrer Immobilie. Wir erkennen Probleme bevor sie teuer werden.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">📱</div>
+                <h3>Persönlicher Kontakt</h3>
+                <p>Direkter Draht zum Inhaber. Keine Warteschleifen, keine Vermittler. Immer erreichbar.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">🔒</div>
+                <h3>Preisgarantie</h3>
+                <p>Festpreise für die gesamte Vertragslaufzeit (12 Monate). Keine versteckten Kosten, keine Überraschungen.</p>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="section packages">
+        <div class="section-header">
+            <div class="section-label">PREMIUM PAKETE</div>
+            <h2 class="section-title">Wählen Sie Ihr Paket</h2>
+            <p class="section-subtitle">Oder lassen Sie uns ein individuelles Paket für Sie zusammenstellen</p>
+        </div>
+        
+        <div class="package-grid">
+            
+            <div class="package-card">
+                <div class="package-name">SILVER</div>
+                <div class="package-price">-5%</div>
+                <div class="package-desc">Jahresvertrag über 1 Service<br>Ideal für Privatimmobilien</div>
+                <ul class="package-features">
+                    <li>1 Service nach Wahl</li>
+                    <li>5% Rabatt aufs Jahr</li>
+                    <li>Feste Termine</li>
+                    <li>Priority Support</li>
+                    <li>12 Monate Laufzeit</li>
+                </ul>
+            </div>
+            
+            <div class="package-card featured">
+                <div class="package-name">GOLD</div>
+                <div class="package-price">-10%</div>
+                <div class="package-desc">Jahresvertrag über 2-3 Services<br>Perfekt für Mehrfamilienhäuser</div>
+                <ul class="package-features">
+                    <li>2-3 Services kombiniert</li>
+                    <li>10% Rabatt aufs Jahr</li>
+                    <li>Alle SILVER Benefits</li>
+                    <li>+ Bonus Check-up</li>
+                    <li>+ Notdienst Priority</li>
+                    <li>12 Monate Laufzeit</li>
+                </ul>
+            </div>
+            
+            <div class="package-card">
+                <div class="package-name">PLATINUM</div>
+                <div class="package-price">-15%</div>
+                <div class="package-desc">Jahresvertrag über 4+ Services<br>Komplettbetreuung Premium</div>
+                <ul class="package-features">
+                    <li>4+ Services kombiniert</li>
+                    <li>15% Rabatt aufs Jahr</li>
+                    <li>Alle GOLD Benefits</li>
+                    <li>+ Quartalsweise Check-ups</li>
+                    <li>+ 24/7 Notdienst</li>
+                    <li>+ Individuelle Anpassungen</li>
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div style="text-align:center; margin-top:4rem; padding:3rem; background:var(--light); border-radius:20px; max-width:900px; margin-left:auto; margin-right:auto; border-left:4px solid var(--gold);">
+            <h3 style="color:var(--dark); font-size:2rem; margin-bottom:1rem;">💡 Individuelle Pakete</h3>
+            <p style="font-size:1.2rem; color:var(--gray); line-height:1.8;">
+                Passt keines der Pakete? Kein Problem!<br>
+                Wir erstellen Ihnen ein <strong>maßgeschneidertes Jahrespaket</strong> nach Ihren Bedürfnissen.<br>
+                Sagen Sie uns einfach, was Sie brauchen - wir machen Ihnen ein attraktives Angebot.
+            </p>
+        </div>
+    </section>
+
+    <section class="section how-it-works">
+        <div class="section-header">
+            <div class="section-label">SO FUNKTIONIERT ES</div>
+            <h2 class="section-title">In 4 Schritten zum Premium-Kunden</h2>
+        </div>
+        
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h4>Kontakt</h4>
+                <p>Sie kontaktieren uns per WhatsApp, E-Mail oder Telefon</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h4>Beratung</h4>
+                <p>Wir besprechen Ihre Bedürfnisse und erstellen ein passendes Paket</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h4>Angebot</h4>
+                <p>Sie erhalten ein transparentes Jahres-Angebot mit Festpreisgarantie</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h4>Start</h4>
+                <p>Nach Vertragsunterzeichnung genießen Sie alle Premium-Vorteile</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial">
+        <div class="testimonial-content">
+            <div class="testimonial-quote">
+                "Mit dem Gold-Paket spare ich nicht nur 10%, sondern habe auch endlich die Sicherheit, dass alles termingerecht erledigt wird. Die beste Entscheidung für meine Immobilie."
+            </div>
+            <div class="testimonial-author">- Premium-Kunde seit 2 Jahren</div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Bereit für Premium Service?</h2>
+        <p>Lassen Sie sich beraten und finden Sie Ihr perfektes Paket</p>
+        <a href="kontakt.html" class="cta-btn">Jetzt Premium werden →</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>P&N Garten und Reinigung</h3>
+                <p>Martinstraße 2a<br>68642 Bürstadt</p>
+            </div>
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+            
+                <p><strong>Telefon:</strong><br>+49 174 7021338</p>
+                <p><strong>E-Mail:</strong><br><a href="mailto:info@pn-garten-und-reinigung.com" style="color: var(--gold);">info@pn-garten-und-reinigung.com</a></p>
+                <p><strong>WhatsApp:</strong><br><a href="https://wa.me/491747021338" style="color: var(--gold);">Nachricht senden</a></p>
+            </div>
+            <div class="footer-section">
+            <div class="footer-section">
+                <h3>Business</h3>
+                <ul>
+                    <li><a href="b2b-partner.html">B2B Partner</a></li>
+                    <li><a href="premium-kunden.html">Premium Kunden</a></li>
+                </ul>
+            </div>
+
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz
+            <div class="footer-section">
+                <h3>Business</h3>
+                <ul>
+                    <li><a href="b2b-partner.html">B2B Partner</a></li>
+                    <li><a href="premium-kunden.html">Premium Kunden</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                    <li><a href="agb.html">AGB</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 P&N Garten und Reinigung. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+</body>
+</html>

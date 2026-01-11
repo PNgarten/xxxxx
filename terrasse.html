@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrassenbau, Pflaster & Zaun | P&N Gebäudeservice</title>
+    <meta name="description" content="Professioneller Terrassenbau in Bürstadt. WPC, Holz, Stein. Pflasterarbeiten, Zaunbau. WPC ab 180€/m².">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --gold:#D4AF37; --dark:#1a1a1a; --gray:#333; --light:#F5F5F5; --brown:#92400e; }
+        body { font-family:'Inter',sans-serif; color:var(--gray); line-height:1.6; }
+        
+        header { position:fixed; top:0; width:100%; background:rgba(255,255,255,0.98); backdrop-filter:blur(10px); box-shadow:0 2px 30px rgba(0,0,0,0.1); z-index:1000; }
+        nav { max-width:1600px; margin:0 auto; padding:1.2rem 3rem; display:flex; justify-content:space-between; align-items:center; }
+        .logo { display:flex; align-items:center; gap:1rem; }
+        .logo-shield { width:50px; height:60px; background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.5rem; color:var(--dark); }
+        .logo-text { font-size:1.5rem; font-weight:900; color:var(--dark); }
+        .nav-links { display:flex; gap:2.5rem; list-style:none; }
+        .nav-links a { text-decoration:none; color:var(--gray); font-weight:600; transition:color 0.3s; }
+        .nav-links a:hover { color:var(--gold); }
+        .cta-header { background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); color:var(--dark); padding:0.9rem 2.5rem; border-radius:50px; text-decoration:none; font-weight:700; }
+        
+        .hero-service { margin-top:90px; padding:6rem 3rem; background:linear-gradient(135deg,var(--brown) 0%,#d97706 100%); color:#fff; text-align:center; }
+        .hero-icon { font-size:6rem; margin-bottom:1.5rem; }
+        .hero-service h1 { font-size:4rem; font-weight:900; margin-bottom:1.5rem; }
+        .hero-service p { font-size:1.3rem; color:rgba(255,255,255,0.95); max-width:800px; margin:0 auto 2rem; line-height:1.8; }
+        .hero-badges { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; }
+        .badge { background:rgba(255,255,255,0.15); padding:0.8rem 1.5rem; border-radius:50px; font-size:0.95rem; border:1px solid rgba(255,255,255,0.3); }
+        
+        .section { padding:8rem 3rem; max-width:1400px; margin:0 auto; }
+        .section-header { text-align:center; margin-bottom:5rem; }
+        .section-label { color:var(--gold); font-weight:700; text-transform:uppercase; letter-spacing:0.15rem; font-size:0.9rem; margin-bottom:1rem; }
+        .section-title { font-size:3rem; font-weight:900; color:var(--dark); margin-bottom:1.5rem; }
+        .section-subtitle { font-size:1.2rem; color:var(--gray); max-width:700px; margin:0 auto; }
+        
+        .services-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:3rem; }
+        .service-card { background:#fff; padding:3rem; border-radius:25px; box-shadow:0 10px 50px rgba(0,0,0,0.08); transition:all 0.3s; border-top:4px solid var(--brown); }
+        .service-card:hover { transform:translateY(-10px); box-shadow:0 20px 70px rgba(0,0,0,0.12); }
+        .service-icon { font-size:4rem; margin-bottom:1.5rem; }
+        .service-card h3 { font-size:2rem; font-weight:800; color:var(--dark); margin-bottom:1rem; }
+        .service-card p { color:var(--gray); line-height:1.8; margin-bottom:1.5rem; font-size:1.05rem; }
+        .service-card ul { list-style:none; }
+        .service-card li { padding:0.6rem 0; padding-left:2rem; position:relative; color:var(--gray); }
+        .service-card li::before { content:'✓'; position:absolute; left:0; color:var(--brown); font-weight:900; }
+        
+        .materialien { background:var(--light); }
+        .material-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2.5rem; margin-top:4rem; }
+        .material-card { background:#fff; padding:2.5rem; border-radius:20px; text-align:center; box-shadow:0 10px 40px rgba(0,0,0,0.08); transition:all 0.3s; }
+        .material-card:hover { transform:translateY(-10px); }
+        .material-icon { font-size:3.5rem; margin-bottom:1.5rem; }
+        .material-card h3 { font-size:1.5rem; color:var(--dark); margin-bottom:1rem; }
+        .material-card p { color:var(--gray); margin-bottom:1rem; }
+        .material-price { font-size:2rem; font-weight:900; color:var(--brown); margin-top:1rem; }
+        
+        .preise { background:#fff; }
+        .preis-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:3rem; margin-top:4rem; }
+        .preis-card { background:var(--light); padding:3.5rem 3rem; border-radius:25px; border-left:4px solid var(--brown); }
+        .preis-card h3 { font-size:2rem; color:var(--dark); margin-bottom:1rem; }
+        .preis-card .price { font-size:3.5rem; font-weight:900; color:var(--brown); margin:1.5rem 0; }
+        .preis-card .desc { color:var(--gray); margin-bottom:2rem; padding-bottom:2rem; border-bottom:2px solid rgba(0,0,0,0.1); }
+        .preis-card ul { list-style:none; }
+        .preis-card li { padding:0.8rem 0; padding-left:2rem; position:relative; font-size:1.05rem; }
+        .preis-card li::before { content:'✓'; position:absolute; left:0; color:var(--brown); font-weight:900; }
+        
+        .prozess { background:var(--light); }
+        .prozess-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; margin-top:4rem; }
+        .prozess-step { text-align:center; padding:2rem; background:#fff; border-radius:15px; }
+        .prozess-number { width:60px; height:60px; background:var(--brown); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:900; margin:0 auto 1.5rem; }
+        .prozess-step h3 { font-size:1.3rem; color:var(--dark); margin-bottom:1rem; }
+        .prozess-step p { color:var(--gray); line-height:1.8; }
+        
+        .faq { background:#fff; }
+        .faq-list { max-width:900px; margin:4rem auto 0; }
+        .faq-item { background:var(--light); padding:2rem; border-radius:15px; margin-bottom:1.5rem; border-left:4px solid var(--brown); }
+        .faq-item h3 { color:var(--dark); font-size:1.3rem; margin-bottom:1rem; }
+        .faq-item p { color:var(--gray); line-height:1.8; }
+        
+        .cta-section { background:linear-gradient(135deg,var(--dark) 0%,#2d2d2d 100%); padding:8rem 3rem; text-align:center; color:#fff; }
+        .cta-section h2 { font-size:3.5rem; font-weight:900; margin-bottom:1.5rem; }
+        .cta-section p { font-size:1.3rem; margin-bottom:3rem; color:rgba(255,255,255,0.8); }
+        .cta-btn { display:inline-block; background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); color:var(--dark); padding:1.2rem 3rem; border-radius:50px; text-decoration:none; font-weight:700; font-size:1.1rem; transition:all 0.3s; }
+        .cta-btn:hover { transform:translateY(-3px); }
+        
+        footer { background:var(--dark); color:rgba(255,255,255,0.8); padding:5rem 3rem 2rem; }
+        .footer-content { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:4rem; margin-bottom:3rem; }
+        .footer-section h3 { color:var(--gold); margin-bottom:1.5rem; }
+        .footer-section ul { list-style:none; }
+        .footer-section ul li { margin-bottom:0.8rem; }
+        .footer-section a { color:rgba(255,255,255,0.8); text-decoration:none; }
+        .footer-section a:hover { color:var(--gold); }
+        .footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:2rem; text-align:center; color:rgba(255,255,255,0.6); }
+        
+        @media (max-width:1024px) { .services-grid, .preis-grid { grid-template-columns:1fr; } .material-grid { grid-template-columns:repeat(2,1fr); } .prozess-grid { grid-template-columns:repeat(2,1fr); } }
+        @media (max-width:768px) { .nav-links { display:none; } .hero-service h1 { font-size:2.5rem; } .material-grid, .prozess-grid { grid-template-columns:1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-shield">P&N</div>
+                <div><div class="logo-text">P&N GEBÄUDESERVICE</div></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leistungen.html">Leistungen</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <a href="angebot.html" class="cta-header">Angebot anfragen</a>
+        </nav>
+    </header>
+
+    <section class="hero-service">
+        <div class="hero-icon">🏗️</div>
+        <h1>Terrassenbau, Pflaster & Zaun</h1>
+        <p>Professionelle Außenanlagen für Ihr Zuhause. Terrassen aus WPC, Holz oder Stein. Pflasterarbeiten, Zäune und Tore aus Metall oder Holz.</p>
+        <div class="hero-badges">
+            <div class="badge">✓ WPC Terrassen</div>
+            <div class="badge">✓ Pflasterarbeiten</div>
+            <div class="badge">✓ Zaunbau</div>
+            <div class="badge">✓ Torbau</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">UNSERE LEISTUNGEN</div>
+            <h2 class="section-title">Für schöne Außenanlagen</h2>
+            <p class="section-subtitle">Von der Planung bis zur fertigen Terrasse oder Einfahrt</p>
+        </div>
+        
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <div class="service-icon">🪵</div>
+                <h3>Terrassenbau</h3>
+                <p>Hochwertige Terrassen aus WPC, Holz oder Stein - langlebig und pflegeleicht.</p>
+                <ul>
+                    <li>WPC-Terrassen (wartungsfrei)</li>
+                    <li>Holzterrassen (Bangkirai, Lärche)</li>
+                    <li>Stein-Terrassen</li>
+                    <li>Unterkonstruktion stabil</li>
+                    <li>Drainage integriert</li>
+                    <li>Komplettservice mit Planung</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🧱</div>
+                <h3>Pflasterarbeiten</h3>
+                <p>Professionelle Pflasterung von Einfahrten, Wegen und Hofeinfahrten.</p>
+                <ul>
+                    <li>Einfahrten pflastern</li>
+                    <li>Gartenwege anlegen</li>
+                    <li>Hofpflaster</li>
+                    <li>Verschiedene Steine</li>
+                    <li>Randsteine setzen</li>
+                    <li>Drainage & Gefälle</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🚧</div>
+                <h3>Zaunbau</h3>
+                <p>Stabile Zäune aus Holz, Metall oder WPC für Privatsphäre und Sicherheit.</p>
+                <ul>
+                    <li>Holzzäune jeder Art</li>
+                    <li>Metallzäune (Doppelstab)</li>
+                    <li>WPC-Sichtschutz</li>
+                    <li>Pfosten einbetoniert</li>
+                    <li>Windstabil gebaut</li>
+                    <li>Mit/ohne Tor</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🚪</div>
+                <h3>Torbau & Carports</h3>
+                <p>Einfahrtstore und Carports aus Metall oder Holz - stabil und langlebig.</p>
+                <ul>
+                    <li>Einfahrtstore (Metall/Holz)</li>
+                    <li>Gartentore</li>
+                    <li>Carports bauen</li>
+                    <li>Schweißarbeiten Metall</li>
+                    <li>Elektrik optional</li>
+                    <li>Stabil & wetterfest</li>
+                </ul>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="section materialien">
+        <div class="section-header">
+            <div class="section-label">MATERIALIEN</div>
+            <h2 class="section-title">Hochwertige Auswahl</h2>
+            <p class="section-subtitle">Wir arbeiten mit bewährten, langlebigen Materialien</p>
+        </div>
+        
+        <div class="material-grid">
+            
+            <div class="material-card">
+                <div class="material-icon">🟤</div>
+                <h3>WPC (Wood-Plastic-Composite)</h3>
+                <p>Wartungsfrei, splitterfrei, langlebig. Ideal für Terrassen. Keine Pflege nötig.</p>
+                <div class="material-price">Ab 180€/m²</div>
+            </div>
+            
+            <div class="material-card">
+                <div class="material-icon">🪵</div>
+                <h3>Holz (Bangkirai, Lärche)</h3>
+                <p>Natürlich, warm, klassisch. Benötigt regelmäßige Pflege (Ölen).</p>
+                <div class="material-price">Ab 150€/m²</div>
+            </div>
+            
+            <div class="material-card">
+                <div class="material-icon">🪨</div>
+                <h3>Stein & Pflaster</h3>
+                <p>Extrem langlebig, vielseitig. Für Terrassen, Wege, Einfahrten.</p>
+                <div class="material-price">Ab 120€/m²</div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="section preise">
+        <div class="section-header">
+            <div class="section-label">PREISBEISPIELE</div>
+            <h2 class="section-title">Transparente Kalkulation</h2>
+            <p class="section-subtitle">Preise nach Größe, Material und Aufwand</p>
+        </div>
+        
+        <div class="preis-grid">
+            
+            <div class="preis-card">
+                <h3>WPC-Terrasse 20m²</h3>
+                <div class="price">3.600€</div>
+                <div class="desc">Inkl. Unterkonstruktion, Drainage, Montage<br>180€/m² komplett</div>
+                <ul>
+                    <li>WPC-Dielen hochwertig</li>
+                    <li>Aluminium-Unterkonstruktion</li>
+                    <li>Drainage & Kies</li>
+                    <li>Randabschluss</li>
+                    <li>Komplette Montage</li>
+                    <li>10 Jahre haltbar</li>
+                </ul>
+            </div>
+            
+            <div class="preis-card">
+                <h3>Einfahrt pflastern 30m²</h3>
+                <div class="price">2.400€</div>
+                <div class="desc">Inkl. Unterbau, Pflastersteine, Verlegung<br>80€/m² komplett</div>
+                <ul>
+                    <li>Aushub & Entsorgung</li>
+                    <li>Schotter-Unterbau</li>
+                    <li>Pflastersteine verlegen</li>
+                    <li>Randsteine setzen</li>
+                    <li>Gefälle korrekt</li>
+                    <li>Befahrbar sofort</li>
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div style="background:var(--light); padding:2.5rem; border-radius:20px; margin-top:4rem; max-width:800px; margin-left:auto; margin-right:auto; border-left:4px solid var(--brown);">
+            <h3 style="color:var(--dark); margin-bottom:1.5rem; font-size:1.5rem;">💡 Zusätzliche Kosten:</h3>
+            <p style="color:var(--gray); line-height:1.8; margin-bottom:1rem;">
+                <strong>Zaunbau:</strong> 60-150€/Meter (je nach Material)<br>
+                <strong>Carport:</strong> 3.000-6.000€ (je nach Größe & Ausstattung)<br>
+                <strong>Gartentor:</strong> 400-1.200€ (Metall geschweißt)
+            </p>
+            <p style="color:var(--gray); line-height:1.8;">
+                Alle Materialien werden auf Vertragsbasis + Vorabrechnung bezahlt.<br>
+                Individuelle Kalkulation nach Besichtigung!
+            </p>
+        </div>
+    </section>
+
+    <section class="section prozess">
+        <div class="section-header">
+            <div class="section-label">ABLAUF</div>
+            <h2 class="section-title">Von der Idee zur fertigen Terrasse</h2>
+        </div>
+        
+        <div class="prozess-grid">
+            <div class="prozess-step">
+                <div class="prozess-number">1</div>
+                <h3>Besichtigung</h3>
+                <p>Wir besichtigen vor Ort, messen aus und beraten zu Materialien</p>
+            </div>
+            
+            <div class="prozess-step">
+                <div class="prozess-number">2</div>
+                <h3>Angebot</h3>
+                <p>Transparentes Festpreis-Angebot mit Material und Arbeitskosten</p>
+            </div>
+            
+            <div class="prozess-step">
+                <div class="prozess-number">3</div>
+                <h3>Material</h3>
+                <p>Nach Anzahlung bestellen wir Material auf Vertragsbasis</p>
+            </div>
+            
+            <div class="prozess-step">
+                <div class="prozess-number">4</div>
+                <h3>Bau</h3>
+                <p>Professionelle Ausführung in 2-5 Tagen je nach Projekt</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section faq">
+        <div class="section-header">
+            <div class="section-label">HÄUFIGE FRAGEN</div>
+            <h2 class="section-title">Antworten zu Terrasse & Pflaster</h2>
+        </div>
+        
+        <div class="faq-list">
+            <div class="faq-item">
+                <h3>Was ist besser: WPC oder Holz?</h3>
+                <p><strong>WPC:</strong> Wartungsfrei, splitterfrei, 20+ Jahre haltbar. Keine Pflege. Etwas teurer.<br><strong>Holz:</strong> Natürlich, günstiger, muss jährlich geölt werden. Beide sind schön!</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Wie lange hält eine WPC-Terrasse?</h3>
+                <p>20-25 Jahre ohne Probleme. WPC verwittert nicht, fault nicht, und braucht keine Pflege außer gelegentlichem Reinigen.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Muss ich eine Baugenehmigung haben?</h3>
+                <p>Meist nicht! Terrassen bis 30m² und Carports sind in der Regel genehmigungsfrei. Wir beraten Sie aber sicherheitshalber vor Ort.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Wie wird das Material bezahlt?</h3>
+                <p>Material wird auf Vertragsbasis + Vorabrechnung bezahlt. Sie erhalten eine detaillierte Liste, zahlen das Material, dann bestellen wir.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Können Sie auch alte Terrassen entfernen?</h3>
+                <p>Ja! Wir entfernen alte Terrassen, Pflaster oder Gehwegplatten und entsorgen fachgerecht. Wird im Angebot mit kalkuliert.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Wie lange dauert der Bau?</h3>
+                <p>Terrasse 20m²: 2-3 Tage • Einfahrt 30m²: 3-4 Tage • Zaun 15m: 2 Tage • Carport: 2-3 Tage. Je nach Wetter und Aufwand.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Bereit für Ihre Traumterrasse?</h2>
+        <p>Kostenlose Besichtigung · Transparentes Angebot · Professionelle Ausführung</p>
+        <a href="angebot.html" class="cta-btn">Jetzt Angebot anfragen →</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>P&N Garten und Reinigung</h3>
+                <p>Martinstraße 2a<br>68642 Bürstadt</p>
+            </div>
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+            
+                <p><strong>Telefon:</strong><br>+49 174 7021338</p>
+                <p><strong>E-Mail:</strong><br><a href="mailto:info@pn-garten-und-reinigung.com" style="color: var(--gold);">info@pn-garten-und-reinigung.com</a></p>
+                <p><strong>WhatsApp:</strong><br><a href="https://wa.me/491747021338" style="color: var(--gold);">Nachricht senden</a></p>
+            </div>
+            <div class="footer-section">
+            <div class="footer-section">
+                <h3>Business</h3>
+                <ul>
+                    <li><a href="b2b-partner.html">B2B Partner</a></li>
+                    <li><a href="premium-kunden.html">Premium Kunden</a></li>
+                </ul>
+            </div>
+
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                    <li><a href="agb.html">AGB</a></li>
+            <div class="footer-section">
+                <h3>Business</h3>
+                <ul>
+                    <li><a href="b2b-partner.html">B2B Partner</a></li>
+                    <li><a href="premium-kunden.html">Premium Kunden</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                    <li><a href="agb.html">AGB</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 P&N Garten und Reinigung. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+</body>
+</html>

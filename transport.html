@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kleintransporte | P&N Gebäudeservice Bürstadt</title>
+    <meta name="description" content="Kleintransporte mit Anhänger in Bürstadt. Möbel, Baumaterial, Sperrmüll. Regional ohne Güterkraftverkehrslizenz.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --gold:#D4AF37; --dark:#1a1a1a; --gray:#333; --light:#F5F5F5; }
+        body { font-family:'Inter',sans-serif; color:var(--gray); line-height:1.6; }
+        header { position:fixed; top:0; width:100%; background:rgba(255,255,255,0.98); backdrop-filter:blur(10px); box-shadow:0 2px 30px rgba(0,0,0,0.1); z-index:1000; }
+        nav { max-width:1600px; margin:0 auto; padding:1.2rem 3rem; display:flex; justify-content:space-between; align-items:center; }
+        .logo { display:flex; align-items:center; gap:1rem; }
+        .logo-shield { width:50px; height:60px; background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.5rem; color:var(--dark); }
+        .logo-text { font-size:1.5rem; font-weight:900; color:var(--dark); }
+        .nav-links { display:flex; gap:2.5rem; list-style:none; }
+        .nav-links a { text-decoration:none; color:var(--gray); font-weight:600; }
+        .cta-header { background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); color:var(--dark); padding:0.9rem 2.5rem; border-radius:50px; text-decoration:none; font-weight:700; }
+        .hero-service { margin-top:90px; padding:6rem 3rem; background:linear-gradient(135deg,#047857 0%,#10b981 100%); color:#fff; text-align:center; }
+        .hero-icon { font-size:6rem; margin-bottom:1.5rem; }
+        .hero-service h1 { font-size:4rem; font-weight:900; margin-bottom:1.5rem; }
+        .hero-service p { font-size:1.3rem; color:rgba(255,255,255,0.95); max-width:800px; margin:0 auto 2rem; }
+        .hero-badges { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; }
+        .badge { background:rgba(255,255,255,0.15); padding:0.8rem 1.5rem; border-radius:50px; }
+        .alert-box { background:#fef3c7; border-left:4px solid #f59e0b; padding:2rem; border-radius:15px; margin:3rem auto; max-width:900px; }
+        .alert-box h3 { color:#92400e; margin-bottom:1rem; font-size:1.5rem; }
+        .section { padding:8rem 3rem; max-width:1400px; margin:0 auto; }
+        .section-header { text-align:center; margin-bottom:5rem; }
+        .section-title { font-size:3rem; font-weight:900; color:var(--dark); margin-bottom:1.5rem; }
+        .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3rem; }
+        .service-card { background:#fff; padding:2.5rem; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.08); border-top:4px solid #10b981; }
+        .service-icon { font-size:3.5rem; margin-bottom:1rem; }
+        .service-card h3 { font-size:1.6rem; font-weight:700; margin-bottom:1rem; }
+        .service-card ul { list-style:none; }
+        .service-card li { padding:0.5rem 0; padding-left:2rem; position:relative; }
+        .service-card li::before { content:'✓'; position:absolute; left:0; color:#10b981; font-weight:900; }
+        .cta-section { background:linear-gradient(135deg,var(--dark) 0%,#2d2d2d 100%); padding:8rem 3rem; text-align:center; color:#fff; }
+        .cta-section h2 { font-size:3.5rem; font-weight:900; margin-bottom:1.5rem; }
+        .cta-btn { display:inline-block; background:linear-gradient(135deg,var(--gold) 0%,#F4D03F 100%); color:var(--dark); padding:1.2rem 3rem; border-radius:50px; text-decoration:none; font-weight:700; }
+        footer { background:var(--dark); color:rgba(255,255,255,0.8); padding:5rem 3rem 2rem; }
+        .footer-content { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:4rem; }
+        .footer-section h3 { color:var(--gold); margin-bottom:1.5rem; }
+        .footer-section ul { list-style:none; }
+        .footer-section a { color:rgba(255,255,255,0.8); text-decoration:none; }
+        @media (max-width:768px) { .nav-links { display:none; } .services-grid { grid-template-columns:1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-shield">P&N</div>
+                <div><div class="logo-text">P&N GEBÄUDESERVICE</div></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leistungen.html">Leistungen</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <a href="angebot.html" class="cta-header">Angebot anfragen</a>
+        </nav>
+    </header>
+
+    <section class="hero-service">
+        <div class="hero-icon">🚚</div>
+        <h1>Kleintransporte</h1>
+        <p>Transporter mit Anhänger für kleinere Transporte. Möbel, Gartenmaterial, Baumaterial, Sperrmüll. Regional und zuverlässig.</p>
+        <div class="hero-badges">
+            <div class="badge">✓ Transporter + Anhänger</div>
+            <div class="badge">✓ Regional</div>
+            <div class="badge">✓ Be- & Entladen</div>
+        </div>
+    </section>
+
+    <div class="alert-box">
+        <h3>⚠️ Wichtiger Hinweis: OHNE Güterkraftverkehrslizenz</h3>
+        <p style="color:#92400e; line-height:1.8;">
+            Wir transportieren <strong>im Zusammenhang mit unseren anderen Dienstleistungen</strong> (Umzug, Renovierung, Garten, Montage).<br>
+            <strong>Keine gewerblichen Fernstrecken-Transporte!</strong> Nur regional/lokal als Nebenleistung.
+        </p>
+    </div>
+
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Was wir transportieren</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🛋️</div>
+                <h3>Möbel & Einrichtung</h3>
+                <ul>
+                    <li>Einzelne Möbel</li>
+                    <li>Bei Umzug/Montage</li>
+                    <li>IKEA Abholung</li>
+                    <li>Be- und Entladung</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌳</div>
+                <h3>Gartenmaterial</h3>
+                <ul>
+                    <li>Grünschnitt Entsorgung</li>
+                    <li>Erde, Kies, Split</li>
+                    <li>Pflanzenkübel</li>
+                    <li>Terrassenmaterial</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🧱</div>
+                <h3>Baumaterial</h3>
+                <ul>
+                    <li>Bei Renovierung</li>
+                    <li>Steine, Platten</li>
+                    <li>Holz, WPC</li>
+                    <li>Bauschutt</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Brauchen Sie einen Transport?</h2>
+        <a href="angebot.html" class="cta-btn">Jetzt anfragen →</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>P&N Garten und Reinigung</h3>
+                <p>Martinstraße 2a<br>68642 Bürstadt</p>
+            </div>
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+            
+                <p><strong>Telefon:</strong><br>+49 174 7021338</p>
+                <p><strong>E-Mail:</strong><br><a href="mailto:info@pn-garten-und-reinigung.com" style="color: var(--gold);">info@pn-garten-und-reinigung.com</a></p>
+                <p><strong>WhatsApp:</strong><br><a href="https://wa.me/491747021338" style="color: var(--gold);">Nachricht senden</a></p>
+            </div>
+            <div class="footer-section">
+            <div class="footer-section">
+                <h3>Business</h3>
+                <ul>
+                    <li><a href="b2b-partner.html">B2B Partner</a></li>
+                    <li><a href="premium-kunden.html">Premium Kunden</a></li>
+                </ul>
+            </div>
+
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a
+            <div class="footer-section">
+                <h3>Business</h3>
+                <ul>
+                    <li><a href="b2b-partner.html">B2B Partner</a></li>
+                    <li><a href="premium-kunden.html">Premium Kunden</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                    <li><a href="agb.html">AGB</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 P&N Garten und Reinigung. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+</body>
+</html>

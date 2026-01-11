@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hausmeisterservice | P&N Gebäudeservice Bürstadt</title>
+    <meta name="description" content="Professioneller Hausmeisterservice in Bürstadt. ULTRA Kostenrechner für präzise Preise. Treppenhausreinigung, Winterdienst, Gartenpflege.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --gold: #D4AF37; --gold-dark: #B8941F; --dark: #1a1a1a; --gray: #333; --light: #F5F5F5; --success: #10b981; --info: #3b82f6; --warning: #f59e0b; --purple: #7C3AED; }
+        body { font-family: 'Inter', sans-serif; color: var(--gray); line-height: 1.6; }
+        
+        /* HEADER */
+        header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); box-shadow: 0 2px 30px rgba(0,0,0,0.1); z-index: 1000; }
+        nav { max-width: 1600px; margin: 0 auto; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 1rem; }
+        .logo-shield { width: 50px; height: 60px; background: linear-gradient(135deg, var(--gold) 0%, #F4D03F 100%); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.5rem; color: var(--dark); }
+        .logo-text { font-size: 1.5rem; font-weight: 900; color: var(--dark); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--gray); font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+        .cta-header { background: linear-gradient(135deg, var(--gold) 0%, #F4D03F 100%); color: var(--dark); padding: 0.9rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; }
+        
+        /* HERO */
+        .hero-service { margin-top: 90px; padding: 5rem 3rem; background: linear-gradient(135deg, var(--dark) 0%, #2d2d2d 100%); color: #fff; text-align: center; }
+        .hero-icon { font-size: 5rem; margin-bottom: 1rem; }
+        .hero-service h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; }
+        .hero-service p { font-size: 1.2rem; opacity: 0.95; max-width: 700px; margin: 0 auto 1.5rem; }
+        .hero-badges { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .badge { background: rgba(255,255,255,0.1); padding: 0.6rem 1.2rem; border-radius: 50px; font-size: 0.9rem; border: 1px solid rgba(212,175,55,0.3); }
+        
+        /* WIZARD */
+        .wizard-wrapper { background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%); padding: 4rem 2rem; }
+        .wizard-container { max-width: 1100px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.12); overflow: hidden; }
+        .wizard-header { background: linear-gradient(135deg, var(--dark) 0%, #2d2d2d 100%); color: white; padding: 2rem; text-align: center; }
+        .wizard-header h2 { font-size: 2rem; font-weight: 900; margin-bottom: 0.3rem; }
+        .wizard-header h2 span { color: var(--gold); }
+        .wizard-header p { font-size: 1rem; opacity: 0.9; }
+        
+        /* PROGRESS */
+        .progress-container { padding: 1.5rem 2rem; background: var(--light); }
+        .progress-steps { display: flex; justify-content: space-between; position: relative; }
+        .progress-steps::before { content: ''; position: absolute; top: 16px; left: 0; right: 0; height: 3px; background: #ddd; }
+        .progress-line { position: absolute; top: 16px; left: 0; height: 3px; background: var(--gold); transition: width 0.3s; z-index: 1; }
+        .progress-step { position: relative; z-index: 2; text-align: center; flex: 1; }
+        .step-circle { width: 32px; height: 32px; border-radius: 50%; background: white; border: 3px solid #ddd; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.4rem; font-weight: 700; font-size: 0.85rem; transition: all 0.3s; }
+        .progress-step.active .step-circle { background: var(--gold); border-color: var(--gold); color: var(--dark); transform: scale(1.1); }
+        .progress-step.completed .step-circle { background: var(--success); border-color: var(--success); color: white; }
+        .step-label { font-size: 0.7rem; font-weight: 600; color: #666; }
+        .progress-step.active .step-label { color: var(--gold); }
+        
+        /* WIZARD CONTENT */
+        .wizard-content { padding: 2rem; min-height: 450px; }
+        .wizard-step { display: none; animation: fadeIn 0.3s; }
+        .wizard-step.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .step-title { font-size: 1.6rem; font-weight: 800; color: var(--dark); margin-bottom: 0.4rem; }
+        .step-subtitle { font-size: 0.95rem; color: #666; margin-bottom: 1.5rem; }
+        
+        /* FORM ELEMENTS */
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label { display: block; font-weight: 700; color: var(--dark); margin-bottom: 0.6rem; font-size: 1rem; }
+        .form-select, .form-input { width: 100%; padding: 0.9rem; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; font-family: inherit; transition: all 0.3s; }
+        .form-select:focus, .form-input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,0.2); }
+        .form-hint { font-size: 0.85rem; color: #666; margin-top: 0.4rem; }
+        
+        /* QUANTITY SELECTOR */
+        .quantity-selector { display: flex; align-items: center; gap: 0.8rem; background: var(--light); padding: 1rem; border-radius: 10px; margin-bottom: 0.8rem; flex-wrap: wrap; }
+        .quantity-label { flex: 1; min-width: 200px; }
+        .quantity-label-title { font-weight: 600; color: var(--dark); font-size: 0.95rem; }
+        .quantity-label-desc { font-size: 0.8rem; color: #666; }
+        .quantity-controls { display: flex; align-items: center; gap: 0.6rem; }
+        .qty-btn { width: 36px; height: 36px; border: none; border-radius: 8px; background: var(--gold); color: var(--dark); font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .qty-btn:hover { background: var(--gold-dark); transform: scale(1.05); }
+        .qty-input { width: 55px; text-align: center; padding: 0.4rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1.1rem; font-weight: 700; }
+        .qty-price { font-weight: 700; color: var(--gold); font-size: 0.9rem; white-space: nowrap; }
+        
+        /* CHECKBOX */
+        .checkbox-group { display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background: var(--light); border-radius: 10px; margin-bottom: 0.6rem; cursor: pointer; transition: all 0.2s; }
+        .checkbox-group:hover { background: rgba(212,175,55,0.1); }
+        .checkbox-group input[type="checkbox"] { width: 22px; height: 22px; cursor: pointer; flex-shrink: 0; accent-color: var(--gold); }
+        .checkbox-content { flex: 1; }
+        .checkbox-title { font-weight: 600; color: var(--dark); font-size: 0.95rem; }
+        .checkbox-desc { font-size: 0.8rem; color: #666; }
+        .checkbox-price { font-weight: 700; color: var(--gold); font-size: 0.9rem; white-space: nowrap; }
+        
+        /* INFO BOX */
+        .info-box { background: rgba(59,130,246,0.1); border-left: 4px solid var(--info); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .info-box-title { font-weight: 700; color: var(--info); margin-bottom: 0.3rem; }
+        .warning-box { background: rgba(245,158,11,0.1); border-left: 4px solid var(--warning); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .warning-box-title { font-weight: 700; color: var(--warning); margin-bottom: 0.3rem; }
+        
+        /* SLIDER */
+        .range-container { margin-bottom: 1.5rem; }
+        .range-labels { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem; }
+        .range-value { color: var(--gold); font-weight: 800; font-size: 1.1rem; }
+        input[type="range"] { width: 100%; height: 8px; border-radius: 4px; background: #ddd; -webkit-appearance: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--gold); cursor: pointer; }
+        
+        /* SECTION TITLE */
+        .section-header { margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gold); }
+        .section-header h3 { font-size: 1.2rem; color: var(--dark); display: flex; align-items: center; gap: 0.5rem; }
+        
+        /* FINAL SUMMARY */
+        .final-summary { background: linear-gradient(135deg, var(--dark) 0%, #2d2d2d 100%); color: white; border-radius: 15px; padding: 2rem; margin-bottom: 1.5rem; }
+        .final-summary h3 { font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--gold); }
+        .final-section { margin-bottom: 1.5rem; }
+        .final-section-title { font-size: 0.9rem; color: var(--gold); margin-bottom: 0.5rem; font-weight: 600; text-transform: uppercase; }
+        .final-item { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.95rem; }
+        .final-item:last-child { border-bottom: none; }
+        .final-totals { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 1.5rem; margin-top: 1.5rem; }
+        .final-total-row { display: flex; justify-content: space-between; padding: 0.5rem 0; }
+        .final-total-row.big { font-size: 1.8rem; font-weight: 900; color: var(--gold); padding-top: 1rem; border-top: 2px solid var(--gold); margin-top: 0.5rem; }
+        
+        /* CONTACT BOX */
+        .contact-box { background: white; border-radius: 15px; padding: 2rem; text-align: center; border: 2px solid var(--light); }
+        .contact-box h4 { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--dark); }
+        .contact-buttons { display: flex; gap: 0.8rem; margin-top: 1.2rem; flex-wrap: wrap; }
+        .btn-contact { flex: 1; min-width: 120px; padding: 0.9rem; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem; transition: all 0.2s; }
+        .btn-call { background: var(--success); color: white; }
+        .btn-whatsapp { background: #25D366; color: white; }
+        .btn-email { background: var(--gold); color: var(--dark); }
+        .btn-contact:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        
+        /* WIZARD BUTTONS */
+        .wizard-buttons { display: flex; justify-content: space-between; gap: 1rem; padding: 1.5rem 2rem; border-top: 2px solid var(--light); background: #fafafa; }
+        .btn { padding: 1rem 2rem; border: none; border-radius: 50px; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .btn-secondary { background: var(--light); color: var(--dark); }
+        .btn-secondary:hover { background: #ddd; }
+        .btn-primary { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--dark); flex: 1; max-width: 300px; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,175,55,0.4); }
+        .btn-success { background: linear-gradient(135deg, var(--success) 0%, #059669 100%); color: white; flex: 1; max-width: 300px; }
+        
+        /* FOOTER */
+        footer { background: var(--dark); color: rgba(255,255,255,0.8); padding: 3rem 3rem 1.5rem; }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 1.5rem; }
+        .footer-section h3 { color: var(--gold); margin-bottom: 1rem; font-size: 1rem; }
+        .footer-section p { margin-bottom: 0.4rem; font-size: 0.9rem; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.4rem; }
+        .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; }
+        .footer-section a:hover { color: var(--gold); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; text-align: center; color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+        
+        /* RESPONSIVE */
+        @media (max-width: 1024px) { .footer-content { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { 
+            .nav-links { display: none; } 
+            .hero-service h1 { font-size: 2.2rem; } 
+            .wizard-buttons { flex-direction: column; } 
+            .footer-content { grid-template-columns: 1fr; } 
+            .contact-buttons { flex-direction: column; }
+            .quantity-selector { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-shield">P&N</div>
+                <div><div class="logo-text">P&N GEBÄUDESERVICE</div></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leistungen.html">Leistungen</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <a href="angebot.html" class="cta-header">Angebot anfragen</a>
+        </nav>
+    </header>
+
+    <section class="hero-service">
+        <div class="hero-icon">🏢</div>
+        <h1>Hausmeisterservice</h1>
+        <p>Professionelle Objektbetreuung für Mehrfamilienhäuser und Gewerbeimmobilien. Mit unserem ULTRA Kostenrechner kalkulieren Sie transparent!</p>
+        <div class="hero-badges">
+            <div class="badge">✓ Treppenhausreinigung</div>
+            <div class="badge">✓ Winterdienst</div>
+            <div class="badge">✓ Gartenpflege</div>
+            <div class="badge">✓ Mülltonnenservice</div>
+        </div>
+    </section>
+
+    <!-- ULTRA PREMIUM CALCULATOR -->
+    <div class="wizard-wrapper">
+        <div class="wizard-container">
+            <div class="wizard-header">
+                <h2>🧮 ULTRA <span>Premium</span> Hausmeister-Rechner</h2>
+                <p>Berechnen Sie Ihre Jahreskosten transparent in 5 Schritten</p>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-steps">
+                    <div class="progress-line" id="progressLine"></div>
+                    <div class="progress-step active"><div class="step-circle">1</div><div class="step-label">Objekt</div></div>
+                    <div class="progress-step"><div class="step-circle">2</div><div class="step-label">Reinigung</div></div>
+                    <div class="progress-step"><div class="step-circle">3</div><div class="step-label">Außen</div></div>
+                    <div class="progress-step"><div class="step-circle">4</div><div class="step-label">Extras</div></div>
+                    <div class="progress-step"><div class="step-circle">5</div><div class="step-label">Ergebnis</div></div>
+                </div>
+            </div>
+            
+            <div class="wizard-content">
+                
+                <!-- STEP 1: OBJEKT -->
+                <div class="wizard-step active" data-step="1">
+                    <h2 class="step-title">Ihr Objekt beschreiben</h2>
+                    <p class="step-subtitle">Grunddaten für die Kalkulation</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">🏢 Objekttyp</label>
+                        <select class="form-select" id="objektTyp">
+                            <option value="mfh">Mehrfamilienhaus (MFH)</option>
+                            <option value="wohnanlage">Wohnanlage (mehrere Gebäude)</option>
+                            <option value="gewerbe">Gewerbeimmobilie</option>
+                            <option value="buero">Bürogebäude</option>
+                            <option value="mix">Wohn- und Geschäftshaus</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">🏠 Anzahl Wohneinheiten / Mieteinheiten</label>
+                        <div class="range-container">
+                            <div class="range-labels">
+                                <span>1</span>
+                                <span class="range-value"><span id="wohneinheitenValue">6</span> Einheiten</span>
+                                <span>50+</span>
+                            </div>
+                            <input type="range" id="wohneinheiten" min="1" max="50" value="6" oninput="updateWohneinheiten()">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">📐 Anzahl Etagen (ohne Keller)</label>
+                        <select class="form-select" id="etagen">
+                            <option value="1">1 Etage (EG)</option>
+                            <option value="2">2 Etagen</option>
+                            <option value="3" selected>3 Etagen</option>
+                            <option value="4">4 Etagen</option>
+                            <option value="5">5 Etagen</option>
+                            <option value="6">6+ Etagen</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">📍 Entfernung von Bürstadt</label>
+                        <div class="range-container">
+                            <div class="range-labels">
+                                <span>0 km</span>
+                                <span class="range-value"><span id="entfernungValue">15</span> km</span>
+                                <span>100 km</span>
+                            </div>
+                            <input type="range" id="entfernung" min="0" max="100" value="15" oninput="updateEntfernung()">
+                        </div>
+                        <div class="info-box" id="entfernungInfo">0-30 km: Kein Aufschlag ✓</div>
+                    </div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('aufzug')">
+                        <input type="checkbox" id="aufzug">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Aufzug vorhanden</div>
+                            <div class="checkbox-desc">Aufzugreinigung als Service möglich</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('tiefgarage')">
+                        <input type="checkbox" id="tiefgarage">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Tiefgarage / Parkhaus</div>
+                            <div class="checkbox-desc">Zusätzliche Reinigungsfläche</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- STEP 2: REINIGUNG -->
+                <div class="wizard-step" data-step="2">
+                    <h2 class="step-title">Reinigungsleistungen</h2>
+                    <p class="step-subtitle">Innenreinigung des Gebäudes</p>
+                    
+                    <div class="section-header"><h3>🧹 Treppenhausreinigung</h3></div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Häufigkeit Treppenhausreinigung</label>
+                        <select class="form-select" id="treppeFrequenz">
+                            <option value="0">Keine Treppenhausreinigung</option>
+                            <option value="12">1× monatlich (12×/Jahr)</option>
+                            <option value="24">2× monatlich (24×/Jahr)</option>
+                            <option value="26" selected>Alle 2 Wochen (26×/Jahr)</option>
+                            <option value="52">1× wöchentlich (52×/Jahr)</option>
+                            <option value="104">2× wöchentlich (104×/Jahr)</option>
+                        </select>
+                        <div class="form-hint">Inkl. Fegen, Wischen, Handlauf, Geländer</div>
+                    </div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('treppeNass')">
+                        <input type="checkbox" id="treppeNass" checked>
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Nassreinigung (Wischen)</div>
+                            <div class="checkbox-desc">Statt nur Kehren - gründlicher</div>
+                        </div>
+                        <span class="checkbox-price">+30%</span>
+                    </div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('treppeFenster')">
+                        <input type="checkbox" id="treppeFenster">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Treppenhausfenster reinigen</div>
+                            <div class="checkbox-desc">4× pro Jahr inkludiert</div>
+                        </div>
+                        <span class="checkbox-price">+150€/Jahr</span>
+                    </div>
+                    
+                    <div class="section-header"><h3>🛗 Aufzug & Keller</h3></div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Aufzugreinigung</label>
+                        <select class="form-select" id="aufzugFrequenz">
+                            <option value="0" selected>Keine / Kein Aufzug</option>
+                            <option value="12">1× monatlich (12×/Jahr)</option>
+                            <option value="26">Alle 2 Wochen (26×/Jahr)</option>
+                            <option value="52">1× wöchentlich (52×/Jahr)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Kellerflure / Kellergang</label>
+                        <select class="form-select" id="kellerFrequenz">
+                            <option value="0" selected>Keine Kellerreinigung</option>
+                            <option value="4">Vierteljährlich (4×/Jahr)</option>
+                            <option value="6">Alle 2 Monate (6×/Jahr)</option>
+                            <option value="12">Monatlich (12×/Jahr)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="section-header"><h3>🚗 Tiefgarage</h3></div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Tiefgarage / Parkhaus reinigen</label>
+                        <select class="form-select" id="tiefgarageFrequenz">
+                            <option value="0" selected>Keine / Keine Tiefgarage</option>
+                            <option value="2">Halbjährlich (2×/Jahr)</option>
+                            <option value="4">Vierteljährlich (4×/Jahr)</option>
+                            <option value="12">Monatlich (12×/Jahr)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- STEP 3: AUSSEN -->
+                <div class="wizard-step" data-step="3">
+                    <h2 class="step-title">Außenbereich & Saisondienste</h2>
+                    <p class="step-subtitle">Garten, Winter, Müll</p>
+                    
+                    <div class="section-header"><h3>❄️ Winterdienst</h3></div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Winterdienst-Paket</label>
+                        <select class="form-select" id="winterdienst">
+                            <option value="0">Kein Winterdienst</option>
+                            <option value="basis">Basis: Nur bei Schnee/Eis (pro Einsatz)</option>
+                            <option value="standard" selected>Standard: Bereitschaft Nov-März (Pauschale)</option>
+                            <option value="premium">Premium: 24/7 Bereitschaft + Streugut inkl.</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Zu räumende Fläche (Gehwege + Eingang)</label>
+                        <div class="range-container">
+                            <div class="range-labels">
+                                <span>20 m²</span>
+                                <span class="range-value"><span id="winterFlaecheValue">80</span> m²</span>
+                                <span>500 m²</span>
+                            </div>
+                            <input type="range" id="winterFlaeche" min="20" max="500" value="80" step="10" oninput="updateWinterFlaeche()">
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('streugut')">
+                        <input type="checkbox" id="streugut">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Streugut inklusive</div>
+                            <div class="checkbox-desc">Salz/Splitt wird gestellt</div>
+                        </div>
+                        <span class="checkbox-price">+120€/Saison</span>
+                    </div>
+                    
+                    <div class="section-header"><h3>🌿 Gartenpflege / Grünflächen</h3></div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Grünflächenpflege</label>
+                        <select class="form-select" id="gartenpflege">
+                            <option value="0">Keine Gartenpflege</option>
+                            <option value="basis">Basis: Rasenmähen (Apr-Okt, 14-tägig)</option>
+                            <option value="standard" selected>Standard: Rasen + Hecken + Laub</option>
+                            <option value="premium">Premium: Komplett inkl. Beete, Pflanzenschnitt</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Grünfläche Größe</label>
+                        <div class="range-container">
+                            <div class="range-labels">
+                                <span>0 m²</span>
+                                <span class="range-value"><span id="gruenflaecheValue">200</span> m²</span>
+                                <span>2000 m²</span>
+                            </div>
+                            <input type="range" id="gruenflaeche" min="0" max="2000" value="200" step="50" oninput="updateGruenflaeche()">
+                        </div>
+                    </div>
+                    
+                    <div class="section-header"><h3>🗑️ Mülltonnenservice</h3></div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Mülltonnen rausstellen / reinstellen</label>
+                        <select class="form-select" id="muell">
+                            <option value="0">Kein Müllservice</option>
+                            <option value="52" selected>Wöchentlich (52×/Jahr)</option>
+                            <option value="104">2× wöchentlich (104×/Jahr)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <div class="quantity-label">
+                            <div class="quantity-label-title">Anzahl Mülltonnen</div>
+                            <div class="quantity-label-desc">Alle Tonnen (Rest, Bio, Papier, Gelb)</div>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty('muelltonnen',-1)">-</button>
+                            <input type="number" class="qty-input" id="muelltonnen" value="4" min="1" max="20">
+                            <button class="qty-btn" onclick="changeQty('muelltonnen',1)">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('muellreinigung')">
+                        <input type="checkbox" id="muellreinigung">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Mülltonnenreinigung</div>
+                            <div class="checkbox-desc">2× pro Jahr Innenreinigung</div>
+                        </div>
+                        <span class="checkbox-price">+80€/Jahr</span>
+                    </div>
+                </div>
+                
+                <!-- STEP 4: EXTRAS -->
+                <div class="wizard-step" data-step="4">
+                    <h2 class="step-title">Zusatzleistungen</h2>
+                    <p class="step-subtitle">Optionale Services für Ihr Objekt</p>
+                    
+                    <div class="section-header"><h3>🔧 Kleinreparaturen & Wartung</h3></div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('kleinreparaturen')">
+                        <input type="checkbox" id="kleinreparaturen">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Kleinreparaturen-Pauschale</div>
+                            <div class="checkbox-desc">Glühbirnen, Türklinken, kleine Reparaturen (bis 2h/Monat)</div>
+                        </div>
+                        <span class="checkbox-price">+600€/Jahr</span>
+                    </div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('kontrollgang')">
+                        <input type="checkbox" id="kontrollgang">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Wöchentlicher Kontrollgang</div>
+                            <div class="checkbox-desc">Sichtkontrolle, Mängelmeldung, Protokoll</div>
+                        </div>
+                        <span class="checkbox-price">+480€/Jahr</span>
+                    </div>
+                    
+                    <div class="section-header"><h3>🏠 Gebäudetechnik</h3></div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('dachrinne')">
+                        <input type="checkbox" id="dachrinne">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Dachrinnenreinigung</div>
+                            <div class="checkbox-desc">2× pro Jahr (Frühjahr + Herbst)</div>
+                        </div>
+                        <span class="checkbox-price">+180€/Jahr</span>
+                    </div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('heizung')">
+                        <input type="checkbox" id="heizung">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Heizungsablesung koordinieren</div>
+                            <div class="checkbox-desc">Termine vereinbaren, Zugang gewähren</div>
+                        </div>
+                        <span class="checkbox-price">+120€/Jahr</span>
+                    </div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('wasseruhren')">
+                        <input type="checkbox" id="wasseruhren">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Wasserzähler ablesen</div>
+                            <div class="checkbox-desc">Monatliche oder jährliche Ablesung</div>
+                        </div>
+                        <span class="checkbox-price">+150€/Jahr</span>
+                    </div>
+                    
+                    <div class="section-header"><h3>📋 Verwaltung & Service</h3></div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('schluessel')">
+                        <input type="checkbox" id="schluessel">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Schlüsselverwaltung</div>
+                            <div class="checkbox-desc">Für Handwerker, Notfälle</div>
+                        </div>
+                        <span class="checkbox-price">+200€/Jahr</span>
+                    </div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('notdienst')">
+                        <input type="checkbox" id="notdienst">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Notdienst-Bereitschaft</div>
+                            <div class="checkbox-desc">Erreichbar für Notfälle (Mo-So)</div>
+                        </div>
+                        <span class="checkbox-price">+400€/Jahr</span>
+                    </div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('protokoll')">
+                        <input type="checkbox" id="protokoll">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Monatliches Protokoll</div>
+                            <div class="checkbox-desc">Dokumentation aller Tätigkeiten</div>
+                        </div>
+                        <span class="checkbox-price">+180€/Jahr</span>
+                    </div>
+                    
+                    <div class="section-header"><h3>🧽 Sonderreinigung</h3></div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('glasreinigung')">
+                        <input type="checkbox" id="glasreinigung">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Glasreinigung Eingangstür</div>
+                            <div class="checkbox-desc">Monatlich (12×/Jahr)</div>
+                        </div>
+                        <span class="checkbox-price">+240€/Jahr</span>
+                    </div>
+                    
+                    <div class="checkbox-group" onclick="toggleCB('grundreinigung')">
+                        <input type="checkbox" id="grundreinigung">
+                        <div class="checkbox-content">
+                            <div class="checkbox-title">Grundreinigung Treppenhaus</div>
+                            <div class="checkbox-desc">1× jährlich intensive Reinigung</div>
+                        </div>
+                        <span class="checkbox-price">+350€/Jahr</span>
+                    </div>
+                </div>
+                
+                <!-- STEP 5: ERGEBNIS -->
+                <div class="wizard-step" data-step="5">
+                    <h2 class="step-title">✨ Ihre Jahres-Kalkulation</h2>
+                    <p class="step-subtitle">Komplette Kostenübersicht für Ihr Objekt</p>
+                    
+                    <div class="final-summary" id="finalSummary">
+                        <!-- Filled by JavaScript -->
+                    </div>
+                    
+                    <div class="contact-box">
+                        <h4>🎉 Interesse an professionellem Hausmeisterservice?</h4>
+                        <p>Kontaktieren Sie uns für ein verbindliches Angebot!</p>
+                        <div class="contact-buttons">
+                            <a href="tel:+491747021338" class="btn-contact btn-call">📞 Anrufen</a>
+                            <a href="https://wa.me/491747021338?text=Hallo%2C%20ich%20interessiere%20mich%20für%20Hausmeisterservice.%20" class="btn-contact btn-whatsapp">💬 WhatsApp</a>
+                            <a href="mailto:info@pn-garten-und-reinigung.com?subject=Hausmeister%20Anfrage" class="btn-contact btn-email">✉️ E-Mail</a>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.85rem; color: #666;">
+                            <strong>P&N Gebäudeservice</strong> • Martinstraße 2a, 68642 Bürstadt<br>
+                            Tel: +49 174 7021338 • <a href="mailto:info@pn-garten-und-reinigung.com" style="color: var(--gold);">info@pn-garten-und-reinigung.com</a>
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="wizard-buttons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousStep()" style="display:none;">← Zurück</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextStep()">Weiter →</button>
+                <button class="btn btn-success" id="finishBtn" onclick="resetCalc()" style="display:none;">🔄 Neue Berechnung</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>P&N Garten und Reinigung</h3>
+                <p>Martinstraße 2a<br>68642 Bürstadt</p>
+            </div>
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+                <p>Tel: +49 174 7021338</p>
+                <p><a href="mailto:info@pn-garten-und-reinigung.com" style="color:var(--gold);">info@pn-garten-und-reinigung.com</a></p>
+                <p><a href="https://wa.me/491747021338" style="color:var(--gold);">WhatsApp</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Business</h3>
+                <ul>
+                    <li><a href="b2b-partner.html">B2B Partner</a></li>
+                    <li><a href="premium-kunden.html">Premium Kunden</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                    <li><a href="agb.html">AGB</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 P&N Garten und Reinigung. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentStep = 1;
+        
+        // UI Update Functions
+        function updateWohneinheiten() {
+            document.getElementById('wohneinheitenValue').textContent = document.getElementById('wohneinheiten').value;
+        }
+        
+        function updateEntfernung() {
+            const val = document.getElementById('entfernung').value;
+            document.getElementById('entfernungValue').textContent = val;
+            let info = val <= 30 ? '0-30 km: Kein Aufschlag ✓' : val <= 60 ? '30-60 km: +10% Aufschlag' : '60-100 km: +20% Aufschlag';
+            document.getElementById('entfernungInfo').textContent = info;
+        }
+        
+        function updateWinterFlaeche() {
+            document.getElementById('winterFlaecheValue').textContent = document.getElementById('winterFlaeche').value;
+        }
+        
+        function updateGruenflaeche() {
+            document.getElementById('gruenflaecheValue').textContent = document.getElementById('gruenflaeche').value;
+        }
+        
+        function toggleCB(id) { const el = document.getElementById(id); if(el) el.checked = !el.checked; }
+        function changeQty(id, d) { const el = document.getElementById(id); if(el) { let v = parseInt(el.value)||0; el.value = Math.max(1, v+d); } }
+        function gv(id) { const el = document.getElementById(id); return el ? (parseInt(el.value)||0) : 0; }
+        function gs(id) { const el = document.getElementById(id); return el ? el.value : ''; }
+        function ic(id) { const el = document.getElementById(id); return el ? el.checked : false; }
+        
+        function nextStep() {
+            if(currentStep < 5) { currentStep++; updateUI(); if(currentStep === 5) generateSummary(); }
+        }
+        
+        function previousStep() {
+            if(currentStep > 1) { currentStep--; updateUI(); }
+        }
+        
+        function updateUI() {
+            document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+            document.querySelector(`.wizard-step[data-step="${currentStep}"]`).classList.add('active');
+            document.querySelectorAll('.progress-step').forEach((s,i) => {
+                s.classList.remove('active','completed');
+                if(i < currentStep-1) s.classList.add('completed');
+                if(i === currentStep-1) s.classList.add('active');
+            });
+            document.getElementById('progressLine').style.width = ((currentStep-1)/4*100)+'%';
+            document.getElementById('prevBtn').style.display = currentStep > 1 ? 'block' : 'none';
+            document.getElementById('nextBtn').style.display = currentStep < 5 ? 'block' : 'none';
+            document.getElementById('finishBtn').style.display = currentStep === 5 ? 'block' : 'none';
+        }
+        
+        function generateSummary() {
+            const we = gv('wohneinheiten');
+            const etagen = gv('etagen');
+            const entf = gv('entfernung');
+            
+            let items = { reinigung: [], aussen: [], extras: [] };
+            let subtotals = { reinigung: 0, aussen: 0, extras: 0 };
+            
+            // REINIGUNG
+            const treppeFreq = gv('treppeFrequenz');
+            if(treppeFreq > 0) {
+                let treppeBase = etagen * 35 * treppeFreq; // 35€ pro Etage pro Reinigung
+                if(ic('treppeNass')) treppeBase *= 1.3;
+                items.reinigung.push({ l: `Treppenhausreinigung (${treppeFreq}×/Jahr)`, p: Math.round(treppeBase) });
+                subtotals.reinigung += treppeBase;
+            }
+            if(ic('treppeFenster')) { items.reinigung.push({ l: 'Treppenhausfenster (4×/Jahr)', p: 150 }); subtotals.reinigung += 150; }
+            
+            const aufzugFreq = gv('aufzugFrequenz');
+            if(aufzugFreq > 0) {
+                const aufzugPreis = aufzugFreq * 15;
+                items.reinigung.push({ l: `Aufzugreinigung (${aufzugFreq}×/Jahr)`, p: aufzugPreis });
+                subtotals.reinigung += aufzugPreis;
+            }
+            
+            const kellerFreq = gv('kellerFrequenz');
+            if(kellerFreq > 0) {
+                const kellerPreis = kellerFreq * 40;
+                items.reinigung.push({ l: `Kellerreinigung (${kellerFreq}×/Jahr)`, p: kellerPreis });
+                subtotals.reinigung += kellerPreis;
+            }
+            
+            const tgFreq = gv('tiefgarageFrequenz');
+            if(tgFreq > 0) {
+                const tgPreis = tgFreq * 120;
+                items.reinigung.push({ l: `Tiefgarage (${tgFreq}×/Jahr)`, p: tgPreis });
+                subtotals.reinigung += tgPreis;
+            }
+            
+            // AUSSEN
+            const winter = gs('winterdienst');
+            const winterFlaeche = gv('winterFlaeche');
+            if(winter && winter !== '0') {
+                let winterPreis = 0;
+                if(winter === 'basis') winterPreis = winterFlaeche * 2; // pro Einsatz geschätzt
+                else if(winter === 'standard') winterPreis = 400 + winterFlaeche * 1.5;
+                else if(winter === 'premium') winterPreis = 800 + winterFlaeche * 2;
+                items.aussen.push({ l: `Winterdienst (${winter})`, p: Math.round(winterPreis) });
+                subtotals.aussen += winterPreis;
+                if(ic('streugut')) { items.aussen.push({ l: 'Streugut inklusive', p: 120 }); subtotals.aussen += 120; }
+            }
+            
+            const garten = gs('gartenpflege');
+            const gruenflaeche = gv('gruenflaeche');
+            if(garten && garten !== '0' && gruenflaeche > 0) {
+                let gartenPreis = 0;
+                if(garten === 'basis') gartenPreis = gruenflaeche * 1.2 * 14; // 14 Einsätze
+                else if(garten === 'standard') gartenPreis = gruenflaeche * 1.8 * 14;
+                else if(garten === 'premium') gartenPreis = gruenflaeche * 2.5 * 14;
+                items.aussen.push({ l: `Gartenpflege (${garten})`, p: Math.round(gartenPreis) });
+                subtotals.aussen += gartenPreis;
+            }
+            
+            const muellFreq = gv('muell');
+            const muelltonnen = gv('muelltonnen');
+            if(muellFreq > 0) {
+                const muellPreis = muellFreq * muelltonnen * 2;
+                items.aussen.push({ l: `Müllservice ${muelltonnen} Tonnen (${muellFreq}×/Jahr)`, p: muellPreis });
+                subtotals.aussen += muellPreis;
+                if(ic('muellreinigung')) { items.aussen.push({ l: 'Mülltonnenreinigung', p: 80 }); subtotals.aussen += 80; }
+            }
+            
+            // EXTRAS
+            const extrasMap = {
+                kleinreparaturen: { l: 'Kleinreparaturen-Pauschale', p: 600 },
+                kontrollgang: { l: 'Wöchentlicher Kontrollgang', p: 480 },
+                dachrinne: { l: 'Dachrinnenreinigung', p: 180 },
+                heizung: { l: 'Heizungsablesung koordinieren', p: 120 },
+                wasseruhren: { l: 'Wasserzähler ablesen', p: 150 },
+                schluessel: { l: 'Schlüsselverwaltung', p: 200 },
+                notdienst: { l: 'Notdienst-Bereitschaft', p: 400 },
+                protokoll: { l: 'Monatliches Protokoll', p: 180 },
+                glasreinigung: { l: 'Glasreinigung Eingangstür', p: 240 },
+                grundreinigung: { l: 'Grundreinigung Treppenhaus', p: 350 }
+            };
+            
+            for(const [id, data] of Object.entries(extrasMap)) {
+                if(ic(id)) { items.extras.push(data); subtotals.extras += data.p; }
+            }
+            
+            // Entfernungszuschlag
+            let zuschlagFaktor = 1;
+            if(entf > 30 && entf <= 60) zuschlagFaktor = 1.1;
+            else if(entf > 60) zuschlagFaktor = 1.2;
+            
+            // Calculate totals
+            const nettoReinigung = Math.round(subtotals.reinigung * zuschlagFaktor);
+            const nettoAussen = Math.round(subtotals.aussen * zuschlagFaktor);
+            const nettoExtras = Math.round(subtotals.extras * zuschlagFaktor);
+            const nettoGesamt = nettoReinigung + nettoAussen + nettoExtras;
+            const mwst = Math.round(nettoGesamt * 0.19);
+            const bruttoGesamt = nettoGesamt + mwst;
+            const monatlich = Math.round(bruttoGesamt / 12);
+            
+            // Generate HTML
+            let html = `<h3>📋 Jahres-Kalkulation für ${we} Wohneinheiten</h3>`;
+            
+            if(items.reinigung.length > 0) {
+                html += `<div class="final-section"><div class="final-section-title">🧹 Reinigung</div>`;
+                items.reinigung.forEach(i => html += `<div class="final-item"><span>${i.l}</span><span>${i.p}€</span></div>`);
+                html += `</div>`;
+            }
+            
+            if(items.aussen.length > 0) {
+                html += `<div class="final-section"><div class="final-section-title">🌿 Außenbereich & Saison</div>`;
+                items.aussen.forEach(i => html += `<div class="final-item"><span>${i.l}</span><span>${i.p}€</span></div>`);
+                html += `</div>`;
+            }
+            
+            if(items.extras.length > 0) {
+                html += `<div class="final-section"><div class="final-section-title">🔧 Zusatzleistungen</div>`;
+                items.extras.forEach(i => html += `<div class="final-item"><span>${i.l}</span><span>${i.p}€</span></div>`);
+                html += `</div>`;
+            }
+            
+            if(zuschlagFaktor > 1) {
+                html += `<div class="final-item" style="color: var(--warning);"><span>Entfernungszuschlag (${Math.round((zuschlagFaktor-1)*100)}%)</span><span>+${Math.round((nettoGesamt/zuschlagFaktor)*(zuschlagFaktor-1))}€</span></div>`;
+            }
+            
+            html += `
+                <div class="final-totals">
+                    <div class="final-total-row"><span>Netto/Jahr:</span><span>${nettoGesamt.toLocaleString('de-DE')}€</span></div>
+                    <div class="final-total-row"><span>MwSt (19%):</span><span>${mwst.toLocaleString('de-DE')}€</span></div>
+                    <div class="final-total-row big"><span>GESAMT/JAHR:</span><span>${bruttoGesamt.toLocaleString('de-DE')}€</span></div>
+                    <div class="final-total-row" style="padding-top:1rem;border-top:1px solid rgba(255,255,255,0.2);margin-top:0.5rem;">
+                        <span>≈ Monatlich:</span><span style="color:var(--gold);font-weight:700;">${monatlich.toLocaleString('de-DE')}€</span>
+                    </div>
+                </div>
+                <p style="text-align:center;font-size:0.85rem;margin-top:1rem;opacity:0.9;">
+                    Unverbindliche Kalkulation. Endpreis nach Objektbesichtigung.
+                </p>
+            `;
+            
+            document.getElementById('finalSummary').innerHTML = html;
+        }
+        
+        function resetCalc() {
+            currentStep = 1;
+            document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+            document.getElementById('treppeNass').checked = true;
+            document.getElementById('wohneinheiten').value = 6; updateWohneinheiten();
+            document.getElementById('entfernung').value = 15; updateEntfernung();
+            document.getElementById('winterFlaeche').value = 80; updateWinterFlaeche();
+            document.getElementById('gruenflaeche').value = 200; updateGruenflaeche();
+            updateUI();
+            document.querySelector('.wizard-wrapper').scrollIntoView({behavior:'smooth'});
+        }
+        
+        document.addEventListener('DOMContentLoaded', updateUI);
+    </script>
+</body>
+</html>
